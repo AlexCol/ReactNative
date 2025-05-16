@@ -1,0 +1,4 @@
+
+---para criar um projeto (ele vem com TS por padrão)
+npx @react-native-community/cli@latest init <projname>
+ex: npx @react-native-community/cli@latest init app01
