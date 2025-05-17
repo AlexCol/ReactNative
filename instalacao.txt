@@ -1,11 +1,12 @@
 https://reactnative.dev/docs/environment-setup
 
-Usar Java Sdk 17
-
-ANDROID_HOME
+https://developer.android.com/studio?hl=pt-br
+--ANDROID_HOME
 local onde está o android sdk
 
-JAVA_HOME
+
+Usar Java Sdk 17
+--JAVA_HOME
 onde está javasdk
 
 Em Path:
