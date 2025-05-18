@@ -1,9 +1,15 @@
 
+https://reactnative.dev/docs/fabric-native-components-introduction
+https://reactnative.dev/docs/components-and-apis
 ---para criar um projeto (ele vem com TS por padrão)
 npx @react-native-community/cli@latest init <projname> --skip-git-init
 ex: npx @react-native-community/cli@latest init app --skip-git-init
 
+https://docs.expo.dev/
 ---trabalhar com expo (MUITO mais leve - e pode ser usado tanto com o celular como com emulador)
 npx create-expo-app@latest <nome projeto> -t
 ex: 
 npx create-expo-app@latest app -t
+
+--
+npm i --save-dev @types/react-native
