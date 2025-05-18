@@ -6,4 +6,4 @@ ex: npx @react-native-community/cli@latest init app --skip-git-init
 ---trabalhar com expo (MUITO mais leve - e pode ser usado tanto com o celular como com emulador)
 npx create-expo-app@latest <nome projeto> -t
 ex: 
-npx create-expo-app@latest app -t --skip-git-init
+npx create-expo-app@latest app -t
