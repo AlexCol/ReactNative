@@ -7,6 +7,7 @@ import { BASIC_IMAGE_URI } from "./src/utils/Constants";
 import MyStyledComp from "./src/components/MyStyledComp";
 import MySizedComp from "./src/components/MySizedComp";
 import MyFlexAndAlignComp from "./src/components/MyFlexAndAlignComp";
+import MyInputs from "./src/components/MyInputs";
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -33,6 +34,9 @@ export default function App() {
 
       {/*flex box e alinhamento*/}
       <MyFlexAndAlignComp />
+
+      {/*inputs*/}
+      <MyInputs />
 
     </ScrollView>
   );
