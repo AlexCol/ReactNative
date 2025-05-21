@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import MyImage from "./src/components/MyImage";
 import { useState } from "react";
 import MyButton from "./src/components/MyButton";
@@ -11,8 +11,20 @@ import MyInputs from "./src/components/MyInputs";
 
 export default function App() {
   const [count, setCount] = useState(0);
+  const [inputText, setInputText] = useState('');
+  const [textBtn, setTextBtn] = useState('');
+  const pressBtn = () => {
+    if (!inputText) {
+      alert('Precisa digitar algo!');
+      return;
+    }
+    setTextBtn('Bem vindo ' + inputText);
+  }
 
   let nome = 'Alexandre';
+
+  //alert('Olá ');
+
   return (
     <ScrollView style={{ marginTop: 20 }}>
       {/*imagens*/}
@@ -37,6 +49,15 @@ export default function App() {
 
       {/*inputs*/}
       <MyInputs />
+
+      <View style={{ height: 100, backgroundColor: 'yellow', justifyContent: 'center', alignItems: 'center' }}>
+        <TextInput
+          placeholder="Digite seu nome."
+          onChangeText={setInputText}
+        />
+        <Text>{textBtn}</Text>
+        <Button title="Clique aqui" onPress={pressBtn} />
+      </View>
 
     </ScrollView>
   );
