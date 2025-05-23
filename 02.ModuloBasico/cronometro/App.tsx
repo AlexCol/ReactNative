@@ -1,7 +1,36 @@
+import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, Text, View } from "react-native";
 
 function App() {
+  const [numero, setNumero] = useState(0);
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const [historico, setHistorico] = useState<string[]>([]);
+  const [volta, setVolta] = useState(0);
   const image = require('./public/images/cronometro.png');
+  const startText = timer ? 'REINICIAR' : 'VAI';
+  const clearText = timer ? 'PARAR' : 'LIMPAR';
+
+  function start() {
+    if (!timer)
+      setTimer(
+        setInterval(() => setNumero((current) => current + 0.1))
+      );
+  }
+
+  function clear() {
+    if (timer) {
+      clearInterval(timer);
+      setTimer(null);
+      const novaVolta = volta + 1;
+      setVolta(novaVolta);
+      historico.push(`${novaVolta} => ${numero.toFixed(1)}`);
+      setHistorico(historico);
+    } else {
+      setNumero(0);
+      setVolta(0);
+      setHistorico([]);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -11,18 +40,25 @@ function App() {
         style={styles.cronometro}
       />
 
-      <Text style={styles.timer}>00:00</Text>
+      <Text style={styles.timer}>{numero.toFixed(1)}</Text>
 
       <View style={styles.btnArea}>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnTexto}> VAI </Text>
+        <TouchableOpacity style={styles.btn} onPress={start}>
+          <Text style={styles.btnTexto}>{startText}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnTexto}>LIMPAR</Text>
+        <TouchableOpacity style={styles.btn} onPress={clear}>
+          <Text style={styles.btnTexto}>{clearText}</Text>
         </TouchableOpacity>
       </View>
+
+      <View>
+        {historico && historico.map((value, index) => (
+          <Text key={index}>{value}</Text>
+        ))}
+      </View>
     </View>
+
   );
 }
 
