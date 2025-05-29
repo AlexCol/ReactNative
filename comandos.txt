@@ -13,3 +13,6 @@ npx create-expo-app@latest app -t
 
 --
 npm i --save-dev @types/react-native
+
+---para instalar o Picker
+npm install @react-native-picker/picker
