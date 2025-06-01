@@ -16,3 +16,6 @@ npm i --save-dev @types/react-native
 
 ---para instalar o Picker
 npm install @react-native-picker/picker
+
+---para instalar o Slider
+npm install @react-native-community/slider

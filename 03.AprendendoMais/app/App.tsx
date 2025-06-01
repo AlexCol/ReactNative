@@ -3,13 +3,17 @@ import { ScrollView, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-
 import MyScrollView from './components/MyScrollView';
 import MyFlatList from './components/MyFlatList';
 import MyPicker from './components/MyPicker';
+import MySlider from './components/MySlider';
+import MySwitch from './components/MySwitch';
 
 export default function App() {
   return (
     <View>
       {/* <MyScrollView /> */}
       {/* <MyFlatList /> */}
-      <MyPicker />
+      {/* <MyPicker /> */}
+      {/* <MySlider /> */}
+      <MySwitch />
     </View>
   );
 }
