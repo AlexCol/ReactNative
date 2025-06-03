@@ -1,4 +1,4 @@
-type feedVarType = {
+export type feedVarType = {
   id: string,
   nome: string,
   descricao: string,
