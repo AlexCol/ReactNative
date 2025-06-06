@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { feedVarType } from "../../variables"
 import { FlatList, Text } from 'react-native';
+import FeedItem from "./components/FeedItem";
 
 type FeedListProps = {
   feed: feedVarType[];
@@ -12,11 +13,7 @@ function FeedList({ feed }: FeedListProps) {
     <FlatList
       showsHorizontalScrollIndicator={false}
       data={feed}
-      renderItem={(item) => {
-        return (
-          <Text>Feed....</Text>
-        )
-      }}
+      renderItem={({ item }) => <FeedItem feed={item} />}
     >
 
     </FlatList>
