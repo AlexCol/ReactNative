@@ -1,18 +1,14 @@
-import { Dispatch, SetStateAction } from "react";
-import { feedVarType } from "../../variables"
+import { Dispatch, SetStateAction, useState } from "react";
+import { feedVar, feedVarType } from "../../variables"
 import { FlatList, Text } from 'react-native';
 import FeedItem from "./components/FeedItem";
 
-type FeedListProps = {
-  feed: feedVarType[];
-  //setFeed: Dispatch<SetStateAction<feedVarType[]>>;
-}
-
-function FeedList({ feed }: FeedListProps) {
+function FeedList() {
+  const feedsFromStorage: feedVarType[] = feedVar; // Simulating fetching from storage
   return (
     <FlatList
       showsHorizontalScrollIndicator={false}
-      data={feed}
+      data={feedsFromStorage}
       renderItem={({ item }) => <FeedItem feed={item} />}
     >
 

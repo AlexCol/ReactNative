@@ -1,10 +1,28 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { feedVarType } from '../../../variables';
+import { useState } from 'react';
 
-function FeedItem({ feed }: { feed: feedVarType }) {
+type FeedItemProps = {
+  feed: feedVarType;
+}
+
+function FeedItem({ feed: param }: FeedItemProps) {
   const basePath = '../../../../assets/img/';
-  return (
+  const [feed, setFeed] = useState(param); // Inicializa o estado com os dados do feed para controlar as interações
+
+  function like() {
+    setFeed(prevState => ({
+      ...prevState,
+      likeada: !prevState.likeada,
+      likers: prevState.likeada ? prevState.likers - 1 : prevState.likers + 1
+    }));
+
+    // Posterior a ajustar o estado, se adicionaria a  lógica para atualizar o backend ou armazenamento local se necessário.
+  }
+
+  return ( //!aqui está tudo junto, mas provavelmente cada parte com comentário em cima poderia ser um componente separado
     <View style={styles.areaFeed}>
+
       {/*Imagem e nome do usuário*/}
       <View style={styles.viewPerfil}>
         <Image
@@ -23,7 +41,7 @@ function FeedItem({ feed }: { feed: feedVarType }) {
 
       {/*Botões de interação*/}
       <View style={styles.areaBtn}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={like}>
           <Image
             style={styles.iconeLike}
             source={feed.likeada ? require(`${basePath}likeada.png`) : require(`${basePath}like.png`)}
@@ -37,6 +55,14 @@ function FeedItem({ feed }: { feed: feedVarType }) {
         </TouchableOpacity>
       </View>
 
+      {/*Quantidade de likes*/}
+      {feed.likers > 0 && (
+        <Text style={styles.likes}>
+          {feed.likers} {feed.likers > 1 ? 'curtidas' : 'curtida'}
+        </Text>
+      )}
+
+      {/*Rodapé com nome e descrição da publicação*/}
       <View style={styles.viewRodape}>
         <Text style={styles.nomeRodape}>{feed.nome}</Text>
         <Text style={styles.descRodape}> {feed.descricao}</Text>
@@ -98,5 +124,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     fontSize: 15,
     color: 'black',
+  },
+  likes: {
+    fontWeight: 'bold',
+    paddingLeft: 5,
   }
 });
