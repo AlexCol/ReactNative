@@ -19,3 +19,6 @@ npm install @react-native-picker/picker
 
 ---para instalar o Slider
 npm install @react-native-community/slider
+
+--para instalar o Async Storage
+npm install @react-native-async-storage/async-storage
