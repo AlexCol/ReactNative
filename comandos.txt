@@ -22,3 +22,7 @@ npm install @react-native-community/slider
 
 --para instalar o Async Storage
 npm install @react-native-async-storage/async-storage
+
+--para instalar o axios
+npm instal axios
+npm instal --save-dev @types/axios
