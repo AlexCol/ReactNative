@@ -1,12 +1,47 @@
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StatusBar, StyleSheet, Text, View } from 'react-native';
 import PickerItem from './src/components/PickerItem';
+import { Moeda } from './src/model/moeda.model';
+import { useEffect, useState } from 'react';
+import api from './src/services/api';
 
 export default function App() {
+  const [moedas, setMoedas] = useState<Moeda[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMoedas = async () => {
+      setLoading(true);
+      //await new Promise(resolve => setTimeout(resolve, 2000)); // Simula um delay de 2 segundos
+
+      const result = await api.get<{ [key: string]: Moeda }>('all');
+      if (result.status !== 200) {
+        console.error('Erro ao buscar moedas:', result.status);
+        return;
+      }
+
+      //const dataAsArray: Moeda[] = Object.values(result.data);
+      const dataAsArray: Moeda[] = Object.keys(result.data).map(key => result.data[key]);
+      setMoedas(dataAsArray);
+      setLoading(false);
+    }
+
+    fetchMoedas();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color="purple" />
+        <Text style={{ color: 'purple' }}>Carregando moedas...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.areaMoeda}>
         <Text style={styles.titulo}>Selecione sua moeda</Text>
-        <PickerItem />
+        <PickerItem moedas={moedas} />
       </View>
     </View>
   );
@@ -20,6 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: StatusBar.currentHeight ? StatusBar.currentHeight + 5 : 0,
     paddingTop: 40,
     alignItems: 'center'
+
   },
   areaMoeda: {
     backgroundColor: 'rgb(249, 249, 249)',

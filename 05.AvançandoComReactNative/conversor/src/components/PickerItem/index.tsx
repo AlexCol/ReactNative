@@ -1,11 +1,16 @@
 import { Picker } from "@react-native-picker/picker"
+import { Moeda } from "../../model/moeda.model";
 
-function PickerItem() {
+type PickerItemProps = {
+  moedas: Moeda[]
+}
+
+function PickerItem({ moedas }: PickerItemProps) {
   return (
     <Picker>
-      <Picker.Item label="Real" value="BRL" />
-      <Picker.Item label="Dólar" value="USD" />
-      <Picker.Item label="Euro" value="EUR" />
+      {moedas.map(moeda => (
+        <Picker.Item key={moeda.code} label={moeda.name} value={moeda.code} />
+      ))}
     </Picker>
   )
 }
