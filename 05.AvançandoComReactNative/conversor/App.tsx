@@ -3,40 +3,45 @@ import PickerItem from './src/components/PickerItem';
 import { Moeda } from './src/model/moeda.model';
 import { useEffect, useRef, useState } from 'react';
 import api from './src/services/api';
+import fetchMoedas from './App.fetchMoedas';
+import converteValor from './App.converteValor';
 
 export default function App() {
-  const [moedas, setMoedas] = useState<Moeda[]>([]);
   const [loading, setLoading] = useState(true);
+  const [moedas, setMoedas] = useState<Moeda[]>([]);
   const [moedaSelecionada, setMoedaSelecionada] = useState<Moeda>({} as Moeda);
   const inputRef = useRef<TextInput>(null);
   const textRef = useRef<string>('');
-  const [valor, setValor] = useState<string>('');
-
-  console.log('redered');
+  const [valorConvertido, setValorConvertido] = useState<string>('');
+  const [convertido, setConvertido] = useState(false);
 
   useEffect(() => {
-    const fetchMoedas = async () => {
-      setLoading(true);
-      //await new Promise(resolve => setTimeout(resolve, 2000)); // Simula um delay de 2 segundos
-
-      const result = await api.get<{ [key: string]: Moeda }>('all');
-      if (result.status !== 200) {
-        console.error('Erro ao buscar moedas:', result.status);
-        return;
-      }
-
-      //const dataAsArray: Moeda[] = Object.values(result.data);
-      const dataAsArray: Moeda[] = Object.keys(result.data).map(key => {
-        result.data[key].name = result.data[key].name.split('/')[0].trim();
-        return result.data[key]
-      });
-      setMoedas(dataAsArray);
-      setMoedaSelecionada(dataAsArray[0]);
-      setLoading(false);
+    const fetchParams = {
+      setMoedas,
+      setMoedaSelecionada,
+      setLoading,
     }
-
-    fetchMoedas();
+    fetchMoedas(fetchParams);
   }, []);
+
+  function mudaMoeda(moeda: Moeda) {
+    limpar();
+    setMoedaSelecionada(moeda);
+  }
+
+  function converter() {
+    const valor = textRef.current;
+    converteValor({ valor, moedaSelecionada, setValorConvertido });
+    setConvertido(true);
+  }
+
+  function limpar() {
+    textRef.current = '';
+    setValorConvertido('');
+    inputRef.current?.focus();
+    inputRef.current?.clear();
+    setConvertido(false);
+  }
 
   if (loading) {
     return (
@@ -53,7 +58,7 @@ export default function App() {
       {/* Parar o Picker */}
       <View style={styles.areaMoeda}>
         <Text style={styles.titulo}>Selecione sua moeda</Text>
-        <PickerItem moedas={moedas} moedaSelecionada={moedaSelecionada} onChange={setMoedaSelecionada} />
+        <PickerItem moedas={moedas} moedaSelecionada={moedaSelecionada} onChange={mudaMoeda} />
       </View>
 
       {/* Area onde o usuário digita o valor */}
@@ -63,18 +68,29 @@ export default function App() {
           style={styles.input}
           placeholder='Ex: 1.5'
           keyboardType='numeric'
+          readOnly={convertido}
           ref={inputRef}
           onChangeText={(text) => textRef.current = text} // Atualiza o valor do TextInput
         />
       </View>
 
       {/* Botão de converter */}
-      <TouchableOpacity style={styles.botaoArea} onPress={() => setValor(textRef.current ?? '')}>
-        <Text style={styles.botaoTexto}>Converter</Text>
+      <TouchableOpacity style={styles.botaoArea} onPress={() => convertido ? limpar() : converter()}>
+        <Text style={styles.botaoTexto}>{convertido ? "Limpar" : "Converter"}</Text>
       </TouchableOpacity>
 
-      <Text style={{ color: 'white' }}>{valor}</Text>
-    </View>
+      {/* Resultado da conversão */}
+      {
+        valorConvertido && (
+          <View style={styles.areaResultado}>
+            <Text style={styles.valorConvertido}>{textRef.current} {moedaSelecionada.code}</Text>
+            <Text style={{ fontSize: 18, margin: 8, fontWeight: '500' }}>corresponde a</Text>
+            <Text style={styles.valorConvertido}>{valorConvertido}</Text>
+          </View>
+        )
+      }
+
+    </View >
   );
 }
 
@@ -129,4 +145,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+  areaResultado: {
+    width: '90%',
+    backgroundColor: 'rgb(249, 249, 249)',
+    marginTop: 34,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24
+  },
+  valorConvertido: {
+    fontSize: 28,
+    color: 'rgb(0,0,0)',
+    fontWeight: 'bold'
+  }
 });
