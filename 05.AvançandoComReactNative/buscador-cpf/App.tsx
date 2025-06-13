@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 import maskCep from './src/Utils/MaskCep';
+import AppTitulo from './src/components/app/App.titulo';
+import AppInput from './src/components/app/App.input';
+import AppBotoes from './src/components/app/App.botoes';
 
 export default function App() {
   const [cep, setCep] = useState('');
@@ -15,16 +18,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Buscador de CPF</Text>
-      <View>
-        <TextInput
-          placeholder='Informe seu cep:'
-          maxLength={9}
-          value={cep}
-          onChangeText={handleChange}
-          keyboardType="numeric"
-        />
-      </View>
+      <AppTitulo />
+
+      <AppInput cep={cep} handleChange={handleChange} />
+
+      <AppBotoes />
+
     </View>
   );
 }
@@ -32,8 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
     backgroundColor: '#fff',
-    marginTop: StatusBar.currentHeight || 0
-  },
-  inputArea: {}
+  }
 });

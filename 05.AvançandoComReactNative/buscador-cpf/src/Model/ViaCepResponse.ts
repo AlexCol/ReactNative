@@ -11,9 +11,6 @@ type ViaCepResponse = {
   ibge: string
   gia: string
   ddd: string
-  siafi: string
-};
-
-type ViaCepError = {
+  siafi: string,
   erro: boolean
-}
+};
