@@ -1,4 +1,4 @@
-type ViaCepResponse = {
+export type ViaCepResponse = {
   cep: string
   logradouro: string
   complemento: string

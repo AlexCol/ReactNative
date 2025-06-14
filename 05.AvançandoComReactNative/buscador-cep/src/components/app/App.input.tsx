@@ -5,9 +5,10 @@ const baseColor = 'rgb(87, 12, 173)';
 type AppInputProps = {
   cep: string;
   handleChange: (text: string) => void;
+  ref: React.RefObject<TextInput | null>;
 }
 
-function AppInput({ cep, handleChange }: AppInputProps) {
+function AppInput({ cep, handleChange, ref }: AppInputProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Informe o CEP:</Text>
@@ -19,6 +20,7 @@ function AppInput({ cep, handleChange }: AppInputProps) {
         onChangeText={handleChange}
         keyboardType="numeric"
         cursorColor={baseColor}
+        ref={ref}
       />
     </View>
   )
