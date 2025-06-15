@@ -7,17 +7,21 @@ function Exemplo01() {
   //! VARIAVEIS
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const [isBig, setIsBig] = useState(false);
-  const larguraAnimada = useRef(new Animated.Value(150)).current;
-  const alturaAnimada = useRef(new Animated.Value(150)).current;
+  const minWidth = 50;
+  const maxWidth = 300;
+  const minHeight = 50;
+  const maxHeight = 200;
+  const larguraAnimada = useRef(new Animated.Value(minWidth)).current;
+  const alturaAnimada = useRef(new Animated.Value(minHeight)).current;
   const opacityAnimada = useRef(new Animated.Value(1)).current;
-  const newWidthValue = isBig ? 300 : 150;
-  const newHeightValue = isBig ? 200 : 150;
+  const newWidthValue = isBig ? maxWidth : minWidth;
+  const newHeightValue = isBig ? maxHeight : minHeight;
   const newOpacityValue = isBig ? 0 : 1;
   const [isLooping, setIsLooping] = useState(false);
   const defaultLoopAnimation = Animated.loop(
     Animated.sequence([
-      widthAnimation(300),
-      widthAnimation(150),
+      widthAnimation(maxWidth),
+      widthAnimation(minWidth),
     ])
   );
 
@@ -25,7 +29,7 @@ function Exemplo01() {
   //! FUNÇÕES
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   function handleUnilateralAnimation() {
-    widthAnimation(newWidthValue).start();
+    widthAnimation(newWidthValue).start(); //posso por uma função de callback aqui, se quiser: ex: .start(() => console.log('Animação concluída!'));
     setIsBig(!isBig);
   }
 
@@ -33,7 +37,7 @@ function Exemplo01() {
     Animated.sequence([
       widthAnimation(newWidthValue),
       heightAnimation(newHeightValue)
-    ]).start();
+    ]).start(); //posso por uma função de callback aqui, se quiser: ex: .start(() => console.log('Animação concluída!'));
     setIsBig(!isBig);
   }
 
@@ -41,7 +45,7 @@ function Exemplo01() {
     Animated.parallel([
       widthAnimation(newWidthValue),
       heightAnimation(newHeightValue)
-    ]).start();
+    ]).start(); //posso por uma função de callback aqui, se quiser: ex: .start(() => console.log('Animação concluída!'));
     setIsBig(!isBig);
   }
 
@@ -50,7 +54,7 @@ function Exemplo01() {
       widthAnimation(newWidthValue),
       heightAnimation(newHeightValue),
       opacityAnimation(newOpacityValue)
-    ]).start();
+    ]).start(); //posso por uma função de callback aqui, se quiser: ex: .start(() => console.log('Animação concluída!'));
     setIsBig(!isBig);
   }
 
@@ -101,7 +105,7 @@ function Exemplo01() {
     <View style={styles.container}>
       <View style={styles.animationContainer}>
         <Animated.View style={[styles.carregandoContainer, animatedStyle]}>
-          <Text style={styles.carregandoText}>Carregando...</Text>
+          <Text style={styles.carregandoText}></Text>
         </Animated.View>
       </View>
 
