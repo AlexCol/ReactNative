@@ -29,3 +29,9 @@ npm instal --save-dev @types/axios
 
 --para instalar o animatable (https://github.com/oblador/react-native-animatable)
 npm instal react-native-animatable
+
+--para instalar icons (https://github.com/oblador/react-native-vector-icons)
+npm install --save @react-native-vector-icons/{pacote desejado}
+para pacotes desejados, ver documentação (ex: Feather, FontAwesome 6)
+-->npm install --save @react-native-vector-icons/fontawesome6 @react-native-vector-icons/feather 
+LIsta de icones: https://oblador.github.io/react-native-vector-icons/
