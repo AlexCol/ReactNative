@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { Text, TouchableOpacity, View } from "react-native"
 import styles from "./sobre.styles";
 import { RouteProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../routes/_RootStackParamList";
@@ -42,7 +42,9 @@ function Sobre({ route }: Props) {
     });
   }, []);
 
-  console.log("Rota Sobre", route);
+  const navegarParaContatos = () => {
+    navigation.navigate("Contatos");
+  }
 
   return (
     <View style={styles.container}>
@@ -50,6 +52,10 @@ function Sobre({ route }: Props) {
       <Text>Nome: {nome}</Text>
       <Text>Idade: {idade}</Text>
       <Text>Cidade: {cidade}</Text>
+
+      <TouchableOpacity style={styles.btn} onPress={navegarParaContatos}>
+        <Text style={styles.textBtn}>Ir para Contatos</Text>
+      </TouchableOpacity>
     </View>
   )
 }

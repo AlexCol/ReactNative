@@ -3,17 +3,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../pages/Home";
 import Sobre from "../pages/Sobre";
 import { RootStackParamList } from "./_RootStackParamList";
-import Contato from "../pages/Contato";
+import Contato, { ContatosScreenConfig } from "../pages/Contato";
 
-const Stack = createNativeStackNavigator<RootStackParamList>(); //forma dinamica,
+export type stackType = ReturnType<typeof createNativeStackNavigator<RootStackParamList>>; //isso aqui pra mim poder criar as configs em metodos fora desse arquivo
+const Stack: stackType = createNativeStackNavigator<RootStackParamList>(); //forma dinamica,
 
 function DynamicRouter() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {HomeScreenConfig()}
-        {SobreScreenConfig()}
-        {ContatosScreenConfig()}
+        {SobreScreenConfig(Stack)}
+        {ContatosScreenConfig(Stack)}
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -39,29 +40,12 @@ function HomeScreenConfig() {
   />
 }
 
-function SobreScreenConfig() {
+function SobreScreenConfig(Stack: stackType) { //exemplo criando a configuração da tela Sobre fora do componente
   return <Stack.Screen
     name="Sobre"
     component={Sobre}
     options={{
       title: 'Tela Sobre',
-      headerStyle: {
-        backgroundColor: '#ee0062',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }}
-  />
-}
-
-function ContatosScreenConfig() {
-  return <Stack.Screen
-    name="Contatos"
-    component={Contato}
-    options={{
-      title: 'Tela Contatos',
       headerStyle: {
         backgroundColor: '#ee0062',
       },
