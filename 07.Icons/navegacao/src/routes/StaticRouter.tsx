@@ -4,21 +4,6 @@ import Home from '../pages/Home';
 import Sobre from '../pages/Sobre';
 import { createStaticNavigation } from '@react-navigation/native';
 
-const HomeConfig = {
-  screen: Home,
-  options: {
-    title: 'Tela Inicial',
-    headerStyle: {
-      backgroundColor: '#6200ee', // cor do header
-    },
-    headerTintColor: '#fff', // cor da fonte do header
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerShown: true, // exibe o header
-  }
-};
-
 const MyStack = createNativeStackNavigator({
   screens: {
     Home: {

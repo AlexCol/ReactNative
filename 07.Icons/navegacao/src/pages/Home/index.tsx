@@ -1,12 +1,20 @@
 import { Text, TouchableOpacity, View } from "react-native"
 import styles from "./home.styles";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../routes/_RootStackParamList";
+
+type HomeNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
 function Home() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<HomeNavigationProp>();
 
   const navegarParaSobre = () => {
-    navigation.navigate("Sobre");
+    navigation.navigate("Sobre", {
+      nome: "João",
+      idade: 30,
+      cidade: "São Paulo"
+    });
   }
 
   return (
