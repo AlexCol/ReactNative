@@ -9,7 +9,7 @@ https://docs.expo.dev/
 ---trabalhar com expo (MUITO mais leve - e pode ser usado tanto com o celular como com emulador)
 npx create-expo-app@latest <nome projeto> -t
 ex: 
-npx create-expo-app@latest navegacao_tabs -t
+npx create-expo-app@latest app -t
 
 --
 npm i --save-dev @types/react-native
