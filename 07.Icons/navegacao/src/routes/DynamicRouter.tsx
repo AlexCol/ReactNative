@@ -14,7 +14,7 @@ function DynamicRouter() {
       <Stack.Navigator>
         {HomeScreenConfig()}
         {SobreScreenConfig(Stack)}
-        {ContatosScreenConfig(Stack)}
+        {ContatosScreenConfig(Stack) /* se eu voltar aqui pra pesquisar leia mais abaixo -- bug */}
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -56,3 +56,14 @@ function SobreScreenConfig(Stack: stackType) { //exemplo criando a configuraçã
     }}
   />
 }
+
+/*
+bug
+--usar essa abordagem, faz o hot reaload não funcionar corretamente,
+perdi um tempo analisando... sugestão de ajuste foi aplicado na navegacao_tabs
+fazer as funções de configuração retornarem um objeto com as propriedades do Stack.Screen
+e não o componente Stack.Screen diretamente, assim o hot reload funciona corretamente.
+
+então no router, fazer um map com as funções de configuração
+ainda não pensei como trabalhar nessa abordagem com autenticação envolvida
+*/

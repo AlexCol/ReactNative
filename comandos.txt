@@ -9,7 +9,7 @@ https://docs.expo.dev/
 ---trabalhar com expo (MUITO mais leve - e pode ser usado tanto com o celular como com emulador)
 npx create-expo-app@latest <nome projeto> -t
 ex: 
-npx create-expo-app@latest app -t
+npx create-expo-app@latest navegacao_tabs -t
 
 --
 npm i --save-dev @types/react-native
@@ -35,8 +35,13 @@ npm install --save @react-native-vector-icons/{pacote desejado}
 para pacotes desejados, ver documentação (ex: Feather, FontAwesome 6)
 -->npm install --save @react-native-vector-icons/fontawesome6 @react-native-vector-icons/feather 
 LIsta de icones: https://oblador.github.io/react-native-vector-icons/
+---> se usar Expo, pode-se importar no fonte apenas
+import { Ionicons } from '@expo/vector-icons'; //trocando Ionicons pelo pacote desejado
 
 --para instalar o react navigation (https://reactnavigation.org/docs/getting-started)
 npm install @react-navigation/native
 npm install react-native-screens react-native-safe-area-context
-npm install @react-navigation/native-stack
+--usar bottom tabs
+npm install @react-navigation/bottom-tabs 
+--usar stacks
+npm install @react-navigation/native-stack 

@@ -11,9 +11,9 @@ function Home() {
 
   const navegarParaSobre = () => {
     navigation.navigate("Sobre", {
-      nome: "João",
-      idade: 30,
-      cidade: "São Paulo"
+      nome: "Alexandre",
+      idade: 39,
+      cidade: "Chapecó"
     });
   }
 
