@@ -45,3 +45,6 @@ npm install react-native-screens react-native-safe-area-context
 npm install @react-navigation/bottom-tabs 
 --usar stacks
 npm install @react-navigation/native-stack 
+--usar drawer (gaveta) -- versão 17, pois a padrão no momento do estudo, 18, dá erro
+npm install @react-navigation/drawer
+npm install react-native-gesture-handler react-native-reanimated@3.17.0
