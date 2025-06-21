@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import SobreScreenConfig from "../pages/Sobre/sobre.config.screen";
 import ContatosScreenConfig from "../pages/Contato/contatos.config.screen";
 import HomeScreenConfig from "../pages/Home/home.config.screen";
+import CustomDrawer from "../components/CustomDrawer";
 
 //BottomTabNavigationOptions
 const DrawerScreenConfig: DrawerNavigationOptions = {
@@ -35,7 +36,11 @@ const componentsList = [
 export default function AppRoutes() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home" screenOptions={DrawerScreenConfig}>
+      <Drawer.Navigator
+        initialRouteName="Home"
+        screenOptions={DrawerScreenConfig}
+        drawerContent={CustomDrawer} // caso não queira usar o padrão do Drawer, pode usar o CustomDrawer
+      >
         {componentsList.map((item) => (
           <Drawer.Screen
             key={item.name}
