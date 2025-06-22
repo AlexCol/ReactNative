@@ -1,10 +1,10 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../database";
 import IUser from "../../model/IUser";
-import { fetchUserParams } from "./app.types";
+import { AppUseFormType } from "./app.setters";
 
-export async function fetchUserObserver(params: fetchUserParams): Promise<void> {
-  const { id, setUser, setLoading } = params;
+export async function fetchUserObserver(states: AppUseFormType): Promise<void> {
+  const { id, setUser, setLoading } = states;
 
   setLoading(true);
   try {

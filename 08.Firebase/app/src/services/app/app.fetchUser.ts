@@ -1,10 +1,10 @@
 import { doc, getDoc } from "firebase/firestore";
-import { fetchUserParams } from "./app.types";
 import { db } from "../../database";
 import IUser from "../../model/IUser";
+import { AppUseFormType } from "./app.setters";
 
-export async function fetchUser(params: fetchUserParams): Promise<void> {
-  const { id, setUser, setLoading } = params;
+export async function fetchUser(states: AppUseFormType): Promise<void> {
+  const { id, setUser, setLoading } = states;
 
   setLoading(true);
   try {

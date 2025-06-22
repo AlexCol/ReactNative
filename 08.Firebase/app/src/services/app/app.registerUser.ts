@@ -1,16 +1,16 @@
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../database";
-import { userRegisterParams } from "./app.types";
 import IUser from "../../model/IUser";
+import { AppUseFormType } from "./app.setters";
 
-export async function registerUser(params: userRegisterParams): Promise<void> {
-  const { user, setId, setLoading } = params;
+export async function registerUser(newUser: IUser, states: AppUseFormType): Promise<void> {
+  const { setId, setLoading } = states;
 
   setLoading(true);
   try {
-    validateUserData(user);
+    validateUserData(newUser);
 
-    const dadosUsuario = user;
+    const dadosUsuario = newUser;
 
     // mais informações de como usar o setDoc abaixo
     //const newDoc = doc(db, "users", "meuIdManual"); //caso se tenha o ID. Pois setDoc funciona como um insert or update
