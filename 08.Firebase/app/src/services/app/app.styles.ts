@@ -6,8 +6,6 @@ export const appStyles = StyleSheet.create({
     backgroundColor: '#fff',
     //alignItems: 'center',
     //justifyContent: 'center',
-    marginTop: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adiciona margem superior para evitar sobreposição com a barra de status
-    marginBottom: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adiciona margem inferior para evitar sobreposição com a barra de status
   },
   btn: {
     //backgroundColor: '#4169e1',

@@ -1,10 +1,18 @@
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 import Crud from './src/components/Crud';
+import Auth from './src/components/Auth';
+import { auth } from "./src/database";
+import { createUserWithEmailAndPassword } from '@firebase/auth';
 
 export default function App() {
+  async function handleCreateUser() {
+    await createUserWithEmailAndPassword(auth, "eu_axil@yahoo.com.br", "123456s");
+  }
+
   return (
     <View style={styles.container}>
-      <Crud />
+      {/* <Crud /> */}
+      <Auth />
     </View>
   );
 }
@@ -12,6 +20,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adiciona margem superior para evitar sobreposição com a barra de status
+    marginBottom: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adiciona margem inferior para evitar sobreposição com a barra de status
   },
 });
 

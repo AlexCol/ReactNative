@@ -1,5 +1,8 @@
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { initializeAuth, getReactNativePersistence, getAuth, Auth } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCRHbx-gPgt0QPF5l2Dck-eweBgJ2R445Q",
@@ -11,7 +14,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
-export { db, app };
+let auth: Auth;
+try {
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage)
+  });
+} catch (error) {
+  console.error("Erro ao inicializar o auth:", error);
+  auth = getAuth(app);
+}
+
+export { db, auth };
