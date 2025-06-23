@@ -40,5 +40,11 @@ export const appStyles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     alignItems: 'center',
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '90%',
+    marginTop: 10,
   }
 });

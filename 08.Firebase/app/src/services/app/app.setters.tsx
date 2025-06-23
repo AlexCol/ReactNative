@@ -12,6 +12,7 @@ export default function appUseForm() {
   const [cargo, setCargo] = useState<string>('');
   const [showForm, setShowForm] = useState<boolean>(false);
   const [users, setUsers] = useState<IUser[]>([]);
+  const [editingUser, setEditingUser] = useState<boolean>(false);
 
   return {
     id, setId,
@@ -21,7 +22,8 @@ export default function appUseForm() {
     idade, setIdade,
     cargo, setCargo,
     showForm, setShowForm,
-    users, setUsers
+    users, setUsers,
+    editingUser, setEditingUser
   };
 }
 

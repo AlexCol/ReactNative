@@ -19,7 +19,7 @@ function AppUsersList({ states }: AppUsersListProps) {
       <FlatList
         keyExtractor={(item) => item.id ?? ""}
         data={sortedUsers}
-        renderItem={({ item }) => <AppUsersListItem user={item} />}
+        renderItem={({ item }) => <AppUsersListItem user={item} states={states} />}
         ListEmptyComponent={<Text>Nenhum usuário encontrado.</Text>}
         showsVerticalScrollIndicator={false}
       />

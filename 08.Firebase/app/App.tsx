@@ -1,50 +1,25 @@
-import { useEffect } from 'react';
-import { Text, View } from 'react-native';
-import { db } from './src/database/index';
-import { fetchUserObserver } from './src/services/app/app.fetchUserObserver';
-import { appStyles } from './src/services/app/app.styles';
-import appUseForm from './src/services/app/app.setters';
-import AppInput from './src/services/app/components/AppInput';
-import AccessInputButton from './src/services/app/components/AppAccessInputButton';
-import AppTopHeader from './src/services/app/components/AppTopHeader';
-import { fetchUsers } from './src/services/app/app.fetchUsers';
-import AppUsersList from './src/services/app/components/AppUsersList';
-
-// arquivos de CRUD na pasta services/app
-//! CREATE -- em registerUser
-//! READ -- em fetchUser e fetchUserObserver
-//! UPDATE -- 
-//! DELETE -- em deleteUser (chamado em AppUsersListItem)
+import { StyleSheet, View } from 'react-native';
+import Crud from './src/components/Crud';
 
 export default function App() {
-  const states = appUseForm(); //demonstração de uso de useState em um arquivo separado, para não poluir o App.tsx
-
-  useEffect(() => {
-    /*fetchers de um usuário por id - que está no useState Id */
-    //fetchUser(states); //usando forma tradicional de chamada ao banco, chamou, pegou os dados e fecha a conexão
-    //fetchUserObserver(states); //usando forma de observação, chama o banco e fica ouvindo as mudanças, atualizando os dados em tempo real
-    fetchUsers(states);
-  }, [states.id]); //registerUser chama o setId, que atualiza o estado, e isso dispara o useEffect novamente
-
-  if (states.loading) {
-    return (
-      <View style={appStyles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-
   return (
-    <View style={appStyles.container}>
-      {/* <AppTopHeader db={db} states={states} /> */}
-
-      {/*formulário de inclusão*/}
-      <AccessInputButton states={states} />
-      {states.showForm && <AppInput states={states} />}
-
-      {/*lista de usuários*/}
-      <AppUsersList states={states} />
+    <View style={styles.container}>
+      <Crud />
     </View>
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+/*
+nota1: Crud está todo fragmentado em services/app, não foi em services/crud pois no curso deu sequencia no mesmo projeto
+resumo:
+  tem um componente para formulário de inclusão e edição de usuários (AppInput) (C e U)
+  tem um componente para lista de usuários (AppUsersList) (R)
+    nele tem um componente para cada item da lista (AppUsersListItem)
+      e nele tem botoes de deletar e ativação do editar (D e U)
+*/
