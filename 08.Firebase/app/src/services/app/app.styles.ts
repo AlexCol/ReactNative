@@ -1,11 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 
 export const appStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    //alignItems: 'center',
+    //justifyContent: 'center',
+    marginTop: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adiciona margem superior para evitar sobreposição com a barra de status
+    marginBottom: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 20, // Adiciona margem inferior para evitar sobreposição com a barra de status
   },
   btn: {
     //backgroundColor: '#4169e1',

@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { appStyles } from "../app.styles"
 import { AppUseFormType } from "../app.setters";
 import { registerUser } from "../app.registerUser";
@@ -17,6 +17,7 @@ function AppInput({ states }: AppInputProps) {
     const newUser: IUser = { nome: states.nome, idade: states.idade, cargo: states.cargo };
     await registerUser(newUser, states);
     clearRefs(states);
+    Keyboard.dismiss(); // Fecha o teclado após o registro
   }
 
   return (
