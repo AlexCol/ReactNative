@@ -1,66 +1,45 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { auth } from "../database";
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native"
+import authUseForm from "../services/auth/auth.setters";
+import AuthInputText from "../services/auth/components/AuthInputText";
+import AuthButtons from "../services/auth/components/AuthButtons";
+import cleanUp from "../services/auth/auth.cleanUp";
 
 function Auth() {
-  async function handleCreateUser() {
-    const user = await createUserWithEmailAndPassword(auth, "eu_axil@yahoo.com.br", "123456s");
-    console.log("Usuário criado com sucesso:", user);
-  }
+  const states = authUseForm();
+  useEffect(() => cleanUp(states), [states.authUser]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Email:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Digite seu email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-
-      <Text style={styles.text}>Senha:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Digite sua senha"
-        secureTextEntry={true}
-        autoCapitalize="none"
-      />
-
-      <TouchableOpacity style={styles.btn} onPress={handleCreateUser}>
-        <Text style={styles.btnText}>Criar uma conta</Text>
-      </TouchableOpacity>
+    <View style={authStyles.container}>
+      <AuthInputText states={states} />
+      <AuthButtons states={states} />
     </View>
   )
 }
 
 export default Auth;
 
-const styles = StyleSheet.create({
+const authStyles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  text: {
-    fontSize: 20,
-    color: "green",
-    marginLeft: 10,
-  },
-  input: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: "rgb(233, 173, 10)",
-    paddingHorizontal: 10,
-    marginHorizontal: 10, //Left & Right
-    marginBottom: 10,
-  },
-  btn: {
-    backgroundColor: "rgb(233, 173, 10)",
-    padding: 10,
-    borderRadius: 5,
-    alignSelf: "center",
-    marginTop: 10,
-  },
-  btnText: {
-    color: "white",
-    fontSize: 16,
+    backgroundColor: "#999",
+    justifyContent: "center",
   },
 })
+
+/* exemplo de combinação de autenticação para liberar acesso ao crud
+  mas aqui não seria o melhor lugar para isso, pois o crud é um componente separado
+  pra isso seria melhor usar o um useContext para alimentar as varaiveis de autenticação
+
+    <View style={authStyles.container}>
+      <AuthLoggedData states={states} />
+      {states.authUser ? (
+        <Crud />
+      ) : (
+        <>
+          <AuthInputText states={states} />
+          <AuthButtons states={states} />
+        </>
+      )}
+    </View>
+*/
