@@ -1,6 +1,7 @@
-npx create-expo-app@latest mytailwind -t
+npx create-expo-app@latest app -t
 
 após isso, seguir os passaos da documentação (apartir do item 1)
+https://www.nativewind.dev/docs/getting-started/installation
 
 OBSERVAÇÃO: lembrar de ajustar configuração do passo 2 
 de

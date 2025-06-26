@@ -61,3 +61,6 @@ npm install --save-dev @types/dotenv
 --obs sobre legacy => Como você está usando React Native, e não usa react-dom, você pode instalar sem se preocupar com esse peer conflict
 --obs2 extensão de styled-components para poder usar intelisense
 npm install styled-components --legacy-peer-deps
+
+--instalar nativewind (tailwind para react native)
+-->olhar arquivo instalação na pasta 20.Tailwind
