@@ -56,3 +56,8 @@ npm install --save-dev @types/firebase
 --instalar dotenv
 npm install dotenv
 npm install --save-dev @types/dotenv
+
+--instalar styled-components (usar estilo como se fosse CSS)
+--obs sobre legacy => Como você está usando React Native, e não usa react-dom, você pode instalar sem se preocupar com esse peer conflict
+--obs2 extensão de styled-components para poder usar intelisense
+npm install styled-components --legacy-peer-deps

@@ -1,0 +1,11 @@
+npx create-expo-app@latest mytailwind -t
+
+após isso, seguir os passaos da documentação (apartir do item 1)
+
+OBSERVAÇÃO: lembrar de ajustar configuração do passo 2 
+de
+"./components/**/*.{js,jsx,ts,tsx}"],
+para
+"./src/**/*.{js,jsx,ts,tsx}"], 
+
+pois uso uma pasta src e não deixo os códigos direto na raiz do projeto
