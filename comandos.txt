@@ -25,7 +25,7 @@ npm install @react-native-async-storage/async-storage
 
 --para instalar o axios
 npm instal axios
-npm instal --save-dev @types/axios
+***(não precisa)npm instal --save-dev @types/axios@latest
 
 --para instalar o animatable (https://github.com/oblador/react-native-animatable)
 npm instal react-native-animatable

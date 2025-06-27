@@ -41,6 +41,18 @@ const submitButtonTailwindClass = `
   justify-center
 `;
 
+//TouchableOpacity
+const disabledSubmitButtonTailwindClass = `
+  w-90%
+  h-11
+  rounded-lg
+  bg-gray-400
+  mt-2.5
+  items-center
+  justify-center  
+
+`;
+
 //Text
 const submitTextTailwindClass = `
   text-20px
@@ -65,6 +77,7 @@ export default {
   areaInput: areaInputTailwindClass,
   input: inputTailwindClass,
   submitButton: submitButtonTailwindClass,
+  disabledSubmitButton: disabledSubmitButtonTailwindClass,
   submitText: submitTextTailwindClass,
   link: linkTailwindClass,
   linkText: linkTextTailwindClass,
