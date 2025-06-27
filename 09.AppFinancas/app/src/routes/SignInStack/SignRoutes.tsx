@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
 import { SignInStackParamList } from './_SignInStackParamList';
 import SignInConfigStack from '../../pages/SignIn/signIn.config.stack';
 import SignUpConfigStack from '../../pages/SignUp/signUp.config.stack';

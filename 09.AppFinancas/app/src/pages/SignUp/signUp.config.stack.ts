@@ -5,15 +5,16 @@ const SignUpConfigStack: StackScreenConfig = {
   name: "SignUp",
   component: SignUp,
   options: {
-    title: 'Tela SignUp',
-    headerStyle: {
-      backgroundColor: '#808000', // cor do header
-    },
+    headerTitle: 'Voltar',
     headerTintColor: '#fff', // cor da fonte do header
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    //headerShown: false, // desabilita o header    
+    headerBackTitle: '',
+    headerStyle: {
+      backgroundColor: '#3B3BDF',
+    },
+    headerShown: true, // desabilita o header    
   },
 }
 export default SignUpConfigStack;
