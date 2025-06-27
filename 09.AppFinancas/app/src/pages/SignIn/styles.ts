@@ -1,21 +1,26 @@
 
+//View
 const backgroundTailwindClass = `
   flex-1
   bg-background  
 `;
 
+//KeyboardAvoidingView
 const containerTailwindClass = `
   flex-1
   items-center
   justify-center
 `;
 
+//Image
 const logoTailwindClass = `mb-logo`;
 
+//View
 const areaInputTailwindClass = `
   flex-col 
   w-90%`;
 
+//TextInput
 const inputTailwindClass = `
   bg-white
   p-2.5
@@ -25,6 +30,7 @@ const inputTailwindClass = `
   text-gray-900
 `;
 
+//TouchableOpacity
 const submitButtonTailwindClass = `
   w-90%
   h-11
@@ -35,16 +41,19 @@ const submitButtonTailwindClass = `
   justify-center
 `;
 
+//Text
 const submitTextTailwindClass = `
   text-20px
   text-white
 `;
 
+//TouchableOpacity
 const linkTailwindClass = `
   mt-2.5
   mb-2.5
 `;
 
+//Text
 const linkTextTailwindClass = `
   text-linkText
 `;

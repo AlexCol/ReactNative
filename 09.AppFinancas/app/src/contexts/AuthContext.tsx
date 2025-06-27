@@ -1,22 +1,28 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
-type AuthContextType = {
+type User = {
   auth: boolean;
-  setAuth: (auth: boolean) => void;
+  id: string;
+  name: string;
+  email: string;
+}
 
+type AuthContextType = {
+  user: User;
+  setUser: (user: User) => void;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [auth, setAuth] = useState<boolean>(false);
+  const [user, setUser] = useState<User>({ auth: false } as User);
 
   useEffect(() => {
     //loadCredentials({ auth, setAuth });
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

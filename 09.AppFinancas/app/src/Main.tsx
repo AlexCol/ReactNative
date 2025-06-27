@@ -3,11 +3,11 @@ import { AuthContext, useAuthValue } from "./contexts/AuthContext";
 import SignRoutes from "./routes/SignInStack/SignRoutes";
 
 function Main() {
-  const { auth } = useAuthValue();
+  const { user } = useAuthValue(); //useAuthValue é um wrapper que tem o useContext dentro dele, então não precisa usar o useContext aqui
   return (
     <>
       {
-        auth
+        user?.auth
           ? //rotas drawer
           <View className="flex-1 items-center justify-center bg-gray-500">
             <Text className="text-xl font-bold text-red-500">
