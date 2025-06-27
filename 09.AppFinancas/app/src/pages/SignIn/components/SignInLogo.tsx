@@ -1,7 +1,7 @@
 import { Image } from "react-native";
 import styles from "../styles";
 
-function Logo() {
+function SignInLogo() {
   return (
     <Image
       className={styles.logo}
@@ -10,4 +10,4 @@ function Logo() {
   )
 }
 
-export default Logo
+export default SignInLogo;

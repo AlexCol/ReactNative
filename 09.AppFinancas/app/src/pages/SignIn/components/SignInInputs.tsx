@@ -2,12 +2,14 @@ import React from 'react'
 import { TextInput, View } from 'react-native'
 import styles from '../styles'
 import { SignInStates } from '../states'
+import { useAuthValue } from '../../../contexts/AuthContext'
 
-type InputsProps = {
+type SignInInputsProps = {
   signInStates: SignInStates
 }
 
-function Inputs({ signInStates }: InputsProps) {
+function SignInInputs({ signInStates }: SignInInputsProps) {
+  const { isLoading } = useAuthValue();;
   return (
     <View className={styles.areaInput}>
       <TextInput
@@ -15,6 +17,7 @@ function Inputs({ signInStates }: InputsProps) {
         placeholder="Seu email"
         onChangeText={(text) => signInStates.emailRef.current = text}
         ref={signInStates.emailInputRef}
+        editable={!isLoading}
       />
       <TextInput
         className={styles.input}
@@ -22,9 +25,10 @@ function Inputs({ signInStates }: InputsProps) {
         secureTextEntry
         onChangeText={(text) => signInStates.passwordRef.current = text}
         ref={signInStates.passwordInputRef}
+        editable={!isLoading}
       />
     </View>
   )
 }
 
-export default Inputs
+export default SignInInputs

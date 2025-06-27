@@ -1,6 +1,7 @@
 import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
 import { User } from "../../model/User";
 import api from "../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 //*************************************************************
 //* Tipagens para o contexto
@@ -11,6 +12,7 @@ export type AuthContextType = {
   token: string;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
 };
 
 //*************************************************************
@@ -31,7 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    //await new Promise((resolve) => setTimeout(resolve, 2000));
     const data = await api({
       method: "post",
       url: "/login",
@@ -46,12 +48,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setToken(data.token);
   };
 
+  const signOut = async () => {
+    setId("");
+    setName("");
+    setToken("");
+  };
+
   const providerValue: AuthContextType = {
     id,
     name,
     token,
     isLoading,
-    signIn
+    signIn,
+    signOut,
   };
 
   return (

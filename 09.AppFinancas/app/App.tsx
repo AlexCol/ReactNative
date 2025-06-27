@@ -1,8 +1,9 @@
 import "./global.css"
 import { StatusBar, Text, View } from "react-native";
-import Main from "./src/Main";
 import { AuthProvider } from "./src/contexts/AuthContext";
 import { NavigationContainer } from "@react-navigation/native";
+import RootNavigator from "./src/routes/RootNavigator/RootNavigator";
+import Main from "./src/Main";
 
 export default function App() {
   return (

@@ -40,14 +40,15 @@ import { Ionicons } from '@expo/vector-icons'; //trocando Ionicons pelo pacote d
 
 --para instalar o react navigation (https://reactnavigation.org/docs/getting-started)
 npm install @react-navigation/native
-npm install react-native-screens react-native-safe-area-context
+npm install react-native-screens react-native-safe-area-context@5.4.0
 --usar bottom tabs
 npm install @react-navigation/bottom-tabs 
 --usar stacks
 npm install @react-navigation/native-stack 
 --usar drawer (gaveta) -- versão 17, pois a padrão no momento do estudo, 18, dá erro
 npm install @react-navigation/drawer
-npm install react-native-gesture-handler react-native-reanimated@3.17.0
+npm install react-native-gesture-handler@~2.24.0 react-native-reanimated@3.17.0
+--->adicionar plugins: ['react-native-reanimated/plugin'], ao arquivo babel.config.js se começar a dar erros
 
 --para instalar o firebase
 npm install firebase

@@ -1,10 +1,11 @@
 import { View } from "react-native";
 import styles from "./styles";
 import useSignInStates from "./states";
-import Logo from "./components/Logo";
+import SignInLogo from "./components/SignInLogo";
 import MyKeyboardAvoidingView from "../../components/MyKeyboardAvoidingView";
-import Inputs from "./components/Inputs";
-import LoginButtons from "./components/LoginButtons";
+import SignInInputs from "./components/SignInInputs";
+import React from "react";
+import SignInButtons from "./components/SignInButtons";
 
 function SignIn() {
   const states = useSignInStates();
@@ -12,9 +13,9 @@ function SignIn() {
   return (
     <View className={styles.background}>
       <MyKeyboardAvoidingView>
-        <Logo />
-        <Inputs signInStates={states} />
-        <LoginButtons signInStates={states} />
+        <SignInLogo />
+        <SignInInputs signInStates={states} />
+        <SignInButtons signInStates={states} />
       </MyKeyboardAvoidingView>
     </View>
   )

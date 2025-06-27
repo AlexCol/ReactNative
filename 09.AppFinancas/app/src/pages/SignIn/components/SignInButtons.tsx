@@ -7,17 +7,18 @@ import { SignNavigationProp } from '../../../routes/SignInStack/_SignInStackPara
 import { useAuthValue } from '../../../contexts/AuthContext'
 import clearSignInRefs from '../functions/clearSignInRefs'
 
-type LoginButtonsProps = {
+type SignInButtonsProps = {
   signInStates: SignInStates
 }
 
-function LoginButtons({ signInStates }: LoginButtonsProps) {
+function SignInButtons({ signInStates }: SignInButtonsProps) {
   const { isLoading, signIn } = useAuthValue();
   const navigation = useNavigation<SignNavigationProp>();
   const submitButtonClass = `${isLoading ? styles.disabledSubmitButton : styles.submitButton}`;
 
   const login = async () => {
-    signIn(signInStates.emailRef.current, signInStates.passwordRef.current);
+    await signIn(signInStates.emailRef.current, signInStates.passwordRef.current);
+    await new Promise((resolve) => setTimeout(resolve, 200)); //pequeno atraso pra não ser visivel a limpeza durante a navegação
     clearSignInRefs(signInStates);
   };
   const signUp = async () => {
@@ -42,4 +43,4 @@ function LoginButtons({ signInStates }: LoginButtonsProps) {
   )
 }
 
-export default LoginButtons
+export default SignInButtons

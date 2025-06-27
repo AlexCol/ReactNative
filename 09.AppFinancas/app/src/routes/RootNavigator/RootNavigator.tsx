@@ -1,23 +1,15 @@
-import { useAuthValue } from "./contexts/AuthContext";
-import SignRoutes from "./routes/SignInStack/SignRoutes";
-import MainRoutes from "./routes/MainDrawer/MainRoutes";
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useAuthValue } from "../../contexts/AuthContext";
+import MainRoutes from "../MainDrawer/MainRoutes";
+import SignRoutes from "../SignInStack/SignRoutes";
 
-function Main() {
-  const { token } = useAuthValue(); //useAuthValue é um wrapper que tem o useContext dentro dele, então não precisa usar o useContext aqui
+const Stack = createNativeStackNavigator();
 
-  return token ? <MainRoutes /> : <SignRoutes />;
-}
+export default function RootNavigator() {
+  const { token } = useAuthValue();
 
-export default Main;
-
-/*
-depois de quase 2 duas horas surtando, devido a erro do reanimated, 
-que não estava funcionando, precia ter haver com a condição de 
-renderização de rotas, por isso essa outra abordagem abaixo.
-
-voltei para a acima pois ela voltou a funcionar do nada depois que testei
-essa de baixo
-
+  return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {token ? (
         <Stack.Screen name="Main" component={MainRoutes} />
@@ -25,7 +17,10 @@ essa de baixo
         <Stack.Screen name="Auth" component={SignRoutes} />
       )}
     </Stack.Navigator>
+  );
+}
 
+/*
 para uma condição entre grupos de rotas, como MainRoutes(Drawer) e SignRoutes(Stack), use o RootNavigator.
 Não se pode fazer diretamente com If
 ex: 
@@ -33,5 +28,4 @@ ex:
 isso gera erro, pois o React Navigation não aceita essa condição diretamente.
 Use o RootNavigator para definir a lógica de navegação entre as rotas principais e de autenticação.
 Isso permite que o React Navigation gerencie corretamente as transições entre as telas, mantendo a estrutura de navegação.
-
 */

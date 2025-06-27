@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { Alert, AlertButton } from "react-native";
+import { Alert } from "react-native";
 
 const host = '192.168.0.102'; //precisa ser o IP do computador na rede, pois o emulador não consegue acessar o localhost do computador
 const port = '3333';

@@ -2,24 +2,20 @@ import { KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View
 import styles from "../SignIn/styles"
 import { SignNavigationProp } from "../../routes/SignInStack/_SignInStackParamList";
 import { useNavigation } from "@react-navigation/native";
+import SignUpInputs from "./components/SignUpInputs";
+import useSignUpStates from "./states";
+import SignUpButton from "./components/SignUpButton";
+import MyKeyboardAvoidingView from "../../components/MyKeyboardAvoidingView";
 
 function SignUp() {
-  const navigation = useNavigation<SignNavigationProp>();
+  const states = useSignUpStates();
 
   return (
     <View className={styles.background}>
-      <KeyboardAvoidingView className={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"} enabled>
-        <View className={styles.areaInput}>
-          <TextInput className={styles.input} placeholder="Nome" />
-          <TextInput className={styles.input} placeholder="Seu E-mail" />
-          <TextInput className={styles.input} placeholder="Sua Senha" secureTextEntry />
-          <TextInput className={styles.input} placeholder="Confirmar Senha" secureTextEntry />
-        </View>
-
-        <TouchableOpacity className={styles.submitButton} activeOpacity={0.8}>
-          <Text className={styles.submitText}>Cadastrar</Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+      <MyKeyboardAvoidingView>
+        <SignUpInputs signUpStates={states} />
+        <SignUpButton signUpStates={states} />
+      </MyKeyboardAvoidingView>
     </View>
   )
 }
