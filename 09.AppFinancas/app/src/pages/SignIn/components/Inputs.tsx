@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextInput, View } from 'react-native'
 import styles from '../styles'
-import { SignInStates } from '../functions/states'
+import { SignInStates } from '../states'
 
 type InputsProps = {
   signInStates: SignInStates

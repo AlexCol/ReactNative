@@ -1,7 +1,7 @@
 import React from 'react'
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native'
 import styles from '../styles'
-import { SignInStates } from '../functions/states'
+import { SignInStates } from '../states'
 import { useNavigation } from '@react-navigation/native'
 import { SignNavigationProp } from '../../../routes/SignInStack/_SignInStackParamList'
 import { AuthContextType } from '../../../contexts/AuthContext'

@@ -1,6 +1,6 @@
 import api from "../../../services/api";
 import { AuthContextType } from "../../../contexts/AuthContext";
-import { SignInStates } from "./states";
+import { SignInStates } from "../states";
 
 export default async function handleSignIn(contexto: AuthContextType, states: SignInStates) {
   const email = states.emailRef.current;
@@ -20,4 +20,8 @@ export default async function handleSignIn(contexto: AuthContextType, states: Si
   contexto.setId(data.id);
   contexto.setName(data.name);
   contexto.setToken(data.token);
+  states.emailRef.current = "";
+  states.passwordRef.current = "";
+  states.emailInputRef.current.clear();
+  states.passwordInputRef.current.clear();
 }

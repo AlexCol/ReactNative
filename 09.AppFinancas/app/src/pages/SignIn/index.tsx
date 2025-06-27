@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import styles from "./styles";
 import { useAuthValue } from "../../contexts/AuthContext";
-import useSignInStates from "./functions/states";
+import useSignInStates from "./states";
 import Logo from "./components/Logo";
 import MyKeyboardAvoidingView from "../../components/MyKeyboardAvoidingView";
 import Inputs from "./components/Inputs";
