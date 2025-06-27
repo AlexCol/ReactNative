@@ -1,18 +1,16 @@
 import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
 import { User } from "../../model/User";
+import api from "../services/api";
 
 //*************************************************************
 //* Tipagens para o contexto
 //*************************************************************
-type dispatch = Dispatch<React.SetStateAction<string>>;
-
 export type AuthContextType = {
   id: string;
-  setId: dispatch;
   name: string;
-  setName: dispatch;
   token: string;
-  setToken: dispatch;
+  isLoading: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
 };
 
 //*************************************************************
@@ -21,22 +19,39 @@ export type AuthContextType = {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 //*************************************************************
-//* Componente Provider do contexto (onde são iniciadas as variáveis de estado)
+//* Componente Provider do contexto (onde são iniciadas as 
+//* variáveis de estado e as funções que serão passadas no value)
 //* E então passadas no value para serem usadas pelos componentes filhos
 //*************************************************************
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [token, setToken] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    //loadCredentials({ auth, setAuth });
-  }, []);
+  const signIn = async (email: string, password: string) => {
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const data = await api({
+      method: "post",
+      url: "/login",
+      data: { email, password },
+    });
+    setIsLoading(false);
+
+    if (!data) return; //preciso fazer nada, api vai gerar o alerta e console de erro
+
+    setId(data.id);
+    setName(data.name);
+    setToken(data.token);
+  };
 
   const providerValue: AuthContextType = {
-    id, setId,
-    name, setName,
-    token, setToken,
+    id,
+    name,
+    token,
+    isLoading,
+    signIn
   };
 
   return (

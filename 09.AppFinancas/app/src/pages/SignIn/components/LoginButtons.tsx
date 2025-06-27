@@ -4,30 +4,37 @@ import styles from '../styles'
 import { SignInStates } from '../states'
 import { useNavigation } from '@react-navigation/native'
 import { SignNavigationProp } from '../../../routes/SignInStack/_SignInStackParamList'
-import { AuthContextType } from '../../../contexts/AuthContext'
-import handleSignIn from '../functions/handleSignIn'
+import { useAuthValue } from '../../../contexts/AuthContext'
+import clearSignInRefs from '../functions/clearSignInRefs'
 
 type LoginButtonsProps = {
-  contexto: AuthContextType,
-  states: SignInStates
+  signInStates: SignInStates
 }
 
-function LoginButtons({ contexto, states }: LoginButtonsProps) {
+function LoginButtons({ signInStates }: LoginButtonsProps) {
+  const { isLoading, signIn } = useAuthValue();
   const navigation = useNavigation<SignNavigationProp>();
-  const submitButtonClass = `${states.isLoading ? styles.disabledSubmitButton : styles.submitButton}`;
+  const submitButtonClass = `${isLoading ? styles.disabledSubmitButton : styles.submitButton}`;
 
-  const login = async () => await handleSignIn(contexto, states);
-  const signUp = () => navigation.navigate("SignUp");
+  const login = async () => {
+    signIn(signInStates.emailRef.current, signInStates.passwordRef.current);
+    clearSignInRefs(signInStates);
+  };
+  const signUp = async () => {
+    navigation.navigate("SignUp");
+    await new Promise((resolve) => setTimeout(resolve, 200)); //pequeno atraso pra não ser visivel a limpeza durante a navegação
+    clearSignInRefs(signInStates);
+  }
 
   return (
     <>
-      <TouchableOpacity className={submitButtonClass} activeOpacity={0.8} onPress={login} disabled={states.isLoading}>
+      <TouchableOpacity className={submitButtonClass} activeOpacity={0.8} onPress={login} disabled={isLoading}>
         <Text className={styles.submitText}>
-          {states.isLoading ? (<ActivityIndicator size="large" color="rgb(0, 138, 23)" />) : "Entrar"}
+          {isLoading ? (<ActivityIndicator size="large" color="rgb(0, 138, 23)" />) : "Entrar"}
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity className={styles.link} onPress={signUp} disabled={states.isLoading}>
+      <TouchableOpacity className={styles.link} onPress={signUp} disabled={isLoading}>
         <Text className={styles.linkText}>Criar uma conta!</Text>
       </TouchableOpacity>
 
