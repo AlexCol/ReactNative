@@ -12,13 +12,18 @@ module.exports = {
       },
       margin: {
         "logo": "25px",
+        "30px": "30px",
+        "15px": "15px",
       },
       width: {
         "90%": "90%",
       },
+      maxHeight: {
+        "15": "60px",
+      },
       fontSize: {
         "17px": "17px",
-        "20px": "20px",
+        "22px": "22px",
       }
     },
   },

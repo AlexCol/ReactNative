@@ -9,7 +9,7 @@ export default async function authFromStorage(states: AuthContextStatesType) {
 
   setTokenOnApi(token);
   states.setStartupLoading(true);
-  await new Promise((resolve) => setTimeout(resolve, 2000)); //simula um delay de 2 segundos para ver o loading
+  //await new Promise((resolve) => setTimeout(resolve, 2000)); //simula um delay de 2 segundos para ver o loading
   const data = await api({
     method: "get",
     url: "/me",

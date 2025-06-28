@@ -55,7 +55,7 @@ const disabledSubmitButtonTailwindClass = `
 
 //Text
 const submitTextTailwindClass = `
-  text-20px
+  text-xl
   text-white
 `;
 

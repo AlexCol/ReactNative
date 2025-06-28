@@ -5,7 +5,7 @@ export default function useAuthContextStates() {
   const [name, setName] = useState<string>("");
   const [token, setToken] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [startupLoading, setStartupLoading] = useState<boolean>(true);
+  const [startupLoading, setStartupLoading] = useState<boolean>(false);
 
   return {
     id, setId,

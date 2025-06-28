@@ -4,7 +4,7 @@ import { AuthContextStatesType } from "../authContext.states";
 
 export default async function authSignIn(email: string, password: string, states: AuthContextStatesType) {
   states.setIsLoading(true);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
   const data = await api({
     method: "post",
     url: "/login",
