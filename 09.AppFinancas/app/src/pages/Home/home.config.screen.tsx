@@ -15,7 +15,7 @@ const HomeScreenConfig: DrawerScreenConfig = {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    headerShown: false, // desabilita o header
+    headerShown: true, // desabilita o header
     drawerIcon: ({ color, size }) => (
       <Feather name="home" size={size} color={color} />
     ),

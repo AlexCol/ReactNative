@@ -2,14 +2,23 @@ import { useAuthValue } from "./contexts/AuthContext";
 import SignRoutes from "./routes/SignInStack/SignRoutes";
 import MainRoutes from "./routes/MainDrawer/MainRoutes";
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { ActivityIndicator, View } from "react-native";
 
 function Main() {
-  const { token } = useAuthValue(); //useAuthValue é um wrapper que tem o useContext dentro dele, então não precisa usar o useContext aqui
+  const { token, startupLoading } = useAuthValue(); //useAuthValue é um wrapper que tem o useContext dentro dele, então não precisa usar o useContext aqui
 
   const Stack = createNativeStackNavigator();
   const stackOptions: NativeStackNavigationOptions = {
     headerShown: false,
     animation: 'fade',
+  }
+
+  if (startupLoading) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   return (

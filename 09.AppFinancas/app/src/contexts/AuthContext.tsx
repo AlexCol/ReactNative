@@ -1,7 +1,8 @@
-import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
-import { User } from "../../model/User";
-import api, { setTokenOnApi } from "../services/api";
-import { useNavigation } from "@react-navigation/native";
+import { createContext, ReactNode, useContext, useEffect } from "react";
+import useAuthContextStates from "./authContext.states";
+import authSignOut from "./functions/authSignOut";
+import authSignIn from "./functions/authSignIn";
+import authFromStorage from "./functions/authFromStorage";
 
 //*************************************************************
 //* Tipagens para o contexto
@@ -11,6 +12,7 @@ export type AuthContextType = {
   name: string;
   token: string;
   isLoading: boolean;
+  startupLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
@@ -26,41 +28,20 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 //* E então passadas no value para serem usadas pelos componentes filhos
 //*************************************************************
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [id, setId] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [token, setToken] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const states = useAuthContextStates();
+  const signIn = async (email: string, password: string) => await authSignIn(email, password, states);
+  const signOut = async () => await authSignOut(states);
 
-  const signIn = async (email: string, password: string) => {
-    setIsLoading(true);
-    //await new Promise((resolve) => setTimeout(resolve, 2000));
-    const data = await api({
-      method: "post",
-      url: "/login",
-      data: { email, password },
-    });
-    setIsLoading(false);
-
-    if (!data) return; //preciso fazer nada, api vai gerar o alerta e console de erro
-
-    setId(data.id);
-    setName(data.name);
-    setToken(data.token); //!esse provavelmente pode ser descartado, pois como seto no axios, não se usaria o token diretamente
-    setTokenOnApi(data.token); //configura o token no axios para as próximas requisições (com isso não precisa mais passar o token manualmente)
-  };
-
-  const signOut = async () => {
-    setId("");
-    setName("");
-    setToken("");
-    setTokenOnApi("");
-  };
+  useEffect(() => {
+    authFromStorage(states);
+  }, []); //carrega os dados do usuário do AsyncStorage quando o componente é montado
 
   const providerValue: AuthContextType = {
-    id,
-    name,
-    token,
-    isLoading,
+    id: states.id,
+    name: states.name,
+    token: states.token,
+    isLoading: states.isLoading,
+    startupLoading: states.startupLoading,
     signIn,
     signOut,
   };
