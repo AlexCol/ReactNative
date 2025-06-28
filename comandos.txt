@@ -65,3 +65,6 @@ npm install styled-components --legacy-peer-deps
 
 --instalar nativewind (tailwind para react native)
 -->olhar arquivo instalação na pasta 20.Tailwind
+
+--pacote dayjs (para tratar com datas)
+npm install dayjs

@@ -23,6 +23,7 @@ type apiProps = {
   method: 'get' | 'post' | 'put' | 'delete' | 'patch';
   url: string;
   data?: any;
+  params?: any;
 }
 const api = async (config: apiProps) => {
   try {
@@ -30,6 +31,7 @@ const api = async (config: apiProps) => {
       method: config.method,
       url: config.url,
       data: config.data,
+      params: config.params,
     });
     return response.data;
   } catch (error) {
