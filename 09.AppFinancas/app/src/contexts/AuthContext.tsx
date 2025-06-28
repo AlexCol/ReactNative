@@ -1,6 +1,6 @@
 import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
 import { User } from "../../model/User";
-import api from "../services/api";
+import api, { setTokenOnApi } from "../services/api";
 import { useNavigation } from "@react-navigation/native";
 
 //*************************************************************
@@ -45,13 +45,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     setId(data.id);
     setName(data.name);
-    setToken(data.token);
+    setToken(data.token); //!esse provavelmente pode ser descartado, pois como seto no axios, não se usaria o token diretamente
+    setTokenOnApi(data.token); //configura o token no axios para as próximas requisições (com isso não precisa mais passar o token manualmente)
   };
 
   const signOut = async () => {
     setId("");
     setName("");
     setToken("");
+    setTokenOnApi("");
   };
 
   const providerValue: AuthContextType = {

@@ -30,9 +30,10 @@ function SignInButtons({ signInStates }: SignInButtonsProps) {
   return (
     <>
       <TouchableOpacity className={submitButtonClass} activeOpacity={0.8} onPress={login} disabled={isLoading}>
-        <Text className={styles.submitText}>
-          {isLoading ? (<ActivityIndicator size="large" color="rgb(0, 138, 23)" />) : "Entrar"}
-        </Text>
+        {isLoading
+          ? (<ActivityIndicator size="large" color="rgb(0, 138, 23)" />)
+          : (<Text className={styles.submitText}>Entrar</Text>)
+        }
       </TouchableOpacity>
 
       <TouchableOpacity className={styles.link} onPress={signUp} disabled={isLoading}>
