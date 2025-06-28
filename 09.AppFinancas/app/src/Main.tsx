@@ -1,11 +1,26 @@
 import { useAuthValue } from "./contexts/AuthContext";
 import SignRoutes from "./routes/SignInStack/SignRoutes";
 import MainRoutes from "./routes/MainDrawer/MainRoutes";
+import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
 
 function Main() {
   const { token } = useAuthValue(); //useAuthValue é um wrapper que tem o useContext dentro dele, então não precisa usar o useContext aqui
 
-  return token ? <MainRoutes /> : <SignRoutes />;
+  const Stack = createNativeStackNavigator();
+  const stackOptions: NativeStackNavigationOptions = {
+    headerShown: false,
+    animation: 'fade',
+  }
+
+  return (
+    <Stack.Navigator screenOptions={stackOptions}>
+      {token ? (
+        <Stack.Screen name="Main" component={MainRoutes} />
+      ) : (
+        <Stack.Screen name="Auth" component={SignRoutes} />
+      )}
+    </Stack.Navigator>
+  );
 }
 
 export default Main;
@@ -18,6 +33,9 @@ renderização de rotas, por isso essa outra abordagem abaixo.
 voltei para a acima pois ela voltou a funcionar do nada depois que testei
 essa de baixo
 
+  const Stack = createNativeStackNavigator();
+
+  return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {token ? (
         <Stack.Screen name="Main" component={MainRoutes} />
@@ -26,12 +44,14 @@ essa de baixo
       )}
     </Stack.Navigator>
 
-para uma condição entre grupos de rotas, como MainRoutes(Drawer) e SignRoutes(Stack), use o RootNavigator.
-Não se pode fazer diretamente com If
-ex: 
-  token ? <MainRoutes /> : <SignRoutes />
-isso gera erro, pois o React Navigation não aceita essa condição diretamente.
-Use o RootNavigator para definir a lógica de navegação entre as rotas principais e de autenticação.
-Isso permite que o React Navigation gerencie corretamente as transições entre as telas, mantendo a estrutura de navegação.
+*/
+
+/*
+observacao 2:
+mudei para o bloco acima, pois a transição de telas é tem um leve efeito
+com o comando abaixo, ela é muito seca
+e nas screenOptions da Stack.Navigator posso adicionais mais opções de configuração
+
+  return token ? <MainRoutes /> : <SignRoutes />;
 
 */
