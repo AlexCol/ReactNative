@@ -1,6 +1,7 @@
 import React from 'react'
 import { MainDrawerParamList } from './_MainDrawerParamList';
 import HomeScreenConfig from '../../pages/Home/home.config.screen';
+import NewRegisterScreenConfig from '../../pages/NewRegister/newRegister.config.screen';
 import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { useAuthValue } from '../../contexts/AuthContext';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
@@ -9,7 +10,8 @@ import { drawerOptions } from './util/mainDrawerOptions';
 
 function MainRoutes() {
   const mainPagesConfigList = [
-    HomeScreenConfig
+    HomeScreenConfig,
+    NewRegisterScreenConfig
   ];
 
   const Drawer = createDrawerNavigator<MainDrawerParamList>();

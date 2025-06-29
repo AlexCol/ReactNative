@@ -5,21 +5,24 @@ import { styles } from './home.styles';
 import Header from '../../components/Header';
 import useHomeStates from './home.states';
 import fetchBalances from './functions/fetchBalances';
+import CardsList from './components/CardsList';
 
 function Home() {
   const states = useHomeStates();
 
   useEffect(() => {
+    if (!states.isFocused) return;
     const isActiveRef = { current: true };
     fetchBalances(states, isActiveRef);
     return () => {
       isActiveRef.current = false;
     }
-  }, []);
+  }, [states.isFocused]);
 
   return (
     <View className={styles.background}>
       <Header title='Minhas movimentações' />
+      <CardsList homeStates={states} />
     </View>
   )
 }
