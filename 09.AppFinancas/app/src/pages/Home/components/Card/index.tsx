@@ -11,6 +11,7 @@ type CardProps = {
 
 function Card({ balance }: CardProps) {
   const labelName = useMemo(() => getLabelName(balance.tag), [balance]);
+  const saldo = useMemo(() => formatToBrCurrency(balance.saldo), [balance.saldo]);
 
   if (!labelName) {
     return null; // or handle the case where balance.tag is not recognized
@@ -19,7 +20,7 @@ function Card({ balance }: CardProps) {
   return (
     <View className={`${cardsStyles.container} ${labelName.color}`}>
       <Text className={cardsStyles.label}>{labelName.label}</Text>
-      <Text className={cardsStyles.balance}>{formatToBrCurrency(balance.saldo)}</Text>
+      <Text className={cardsStyles.balance}>{saldo}</Text>
     </View>
   );
 }

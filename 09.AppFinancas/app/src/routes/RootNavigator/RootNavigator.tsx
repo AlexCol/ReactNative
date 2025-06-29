@@ -1,24 +1,24 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useAuthValue } from "../../contexts/AuthContext";
-import MainRoutes from "../MainDrawer/MainRoutes";
-import SignRoutes from "../SignInStack/SignRoutes";
+// import React from "react";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import { useAuthValue } from "../../contexts/AuthContext";
+// import MainRoutes from "../MainDrawer/MainRoutes";
+// import SignRoutes from "../SignInStack/SignRoutes";
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
-export default function RootNavigator() {
-  const { token } = useAuthValue();
+// export default function RootNavigator() {
+//   const { token } = useAuthValue();
 
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {token ? (
-        <Stack.Screen name="Main" component={MainRoutes} />
-      ) : (
-        <Stack.Screen name="Auth" component={SignRoutes} />
-      )}
-    </Stack.Navigator>
-  );
-}
+//   return (
+//     <Stack.Navigator screenOptions={{ headerShown: false }}>
+//       {token ? (
+//         <Stack.Screen name="Main" component={MainRoutes} />
+//       ) : (
+//         <Stack.Screen name="Auth" component={SignRoutes} />
+//       )}
+//     </Stack.Navigator>
+//   );
+// }
 
 /*
 para uma condição entre grupos de rotas, como MainRoutes(Drawer) e SignRoutes(Stack), use o RootNavigator.

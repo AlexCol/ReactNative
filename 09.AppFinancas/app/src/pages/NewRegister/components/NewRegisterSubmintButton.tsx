@@ -14,6 +14,7 @@ function NewRegisterSubmintButton({ newRegisterStates }: NewRegisterSubmintButto
     console.log('Registrando...');
     console.log(newRegisterStates.descricao);
     console.log(newRegisterStates.valor);
+    console.log(newRegisterStates.tipoLancamento);
     newRegisterClearRefs(newRegisterStates);
   }
 

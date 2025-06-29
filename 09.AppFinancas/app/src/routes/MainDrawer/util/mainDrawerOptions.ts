@@ -13,6 +13,6 @@ export const drawerOptions: DrawerNavigationOptions = {
   drawerActiveBackgroundColor: '#3b3bdf',
   drawerActiveTintColor: '#fff',
 
-  drawerInactiveBackgroundColor: '#f0f2ff',
+  //drawerInactiveBackgroundColor: '#f0f2ff',
   drawerInactiveTintColor: '#121212',
 }

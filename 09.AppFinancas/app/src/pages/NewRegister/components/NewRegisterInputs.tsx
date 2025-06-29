@@ -11,7 +11,7 @@ type NewRegisterInputsProps = {
 
 function NewRegisterInputs({ newRegisterStates }: NewRegisterInputsProps) {
   return (
-    <View className={newRegisterStyles.background}>
+    <>
       <TextInput
         className={newRegisterStyles.input}
         placeholder="Descrição desse registro"
@@ -28,7 +28,7 @@ function NewRegisterInputs({ newRegisterStates }: NewRegisterInputsProps) {
         maxLength={10}
         keyboardType='numeric'
       />
-    </View>
+    </>
   )
 }
 

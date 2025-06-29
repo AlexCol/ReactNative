@@ -7,11 +7,17 @@ const containerTailwindClass = `
   justify-center
 `;
 
-function MyKeyboardAvoidingView({ children }: { children: React.ReactNode }) {
+type MyKeyboardAvoidingViewProps = {
+  children: React.ReactNode,
+  className?: string,
+}
+
+function MyKeyboardAvoidingView({ children, className }: MyKeyboardAvoidingViewProps) {
+  const baseTailwindClass = className ?? containerTailwindClass;
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      className={containerTailwindClass}
+      className={baseTailwindClass}
     >
       {children}
     </KeyboardAvoidingView>
