@@ -4,7 +4,7 @@ import { HomeStates } from "../home.states";
 import { BACKEND_DATE_FORMAT } from "../../../util/constantes";
 
 export default async function fetchBalances(states: HomeStates, isActiveRef: { current: boolean }) {
-  states.setIsLoading(true);
+  //states.setIsLoading(true);
 
   const data = await api({
     method: 'get',
@@ -24,7 +24,7 @@ export default async function fetchBalances(states: HomeStates, isActiveRef: { c
     states.setListBalance([]);
   }
 
-  states.setIsLoading(false);
+  //states.setIsLoading(false);
 }
 
 /*

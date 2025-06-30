@@ -1,7 +1,7 @@
 import { FlatList, Text } from "react-native";
 import { HomeStates } from "../../home.states";
 import { cardsListStyles } from "./cardsList.styles";
-import Card from "../Card";
+import Card from "./components/Card";
 
 type CardsListProps = {
   homeStates: HomeStates

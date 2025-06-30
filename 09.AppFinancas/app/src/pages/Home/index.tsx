@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
-import { useAuthValue } from '../../contexts/AuthContext'
+import { View } from 'react-native'
 import { styles } from './home.styles';
 import Header from '../../components/Header';
 import useHomeStates from './home.states';
-import fetchBalances from './functions/fetchBalances';
 import CardsList from './components/CardsList';
+import ListReceives from './components/ListReceives';
+import fetchData from './functions/fetchData';
 
 function Home() {
   const states = useHomeStates();
 
   useEffect(() => {
-    if (!states.isFocused) return;
     const isActiveRef = { current: true };
-    fetchBalances(states, isActiveRef);
+    fetchData({ states, isActiveRef });
     return () => {
       isActiveRef.current = false;
     }
@@ -23,9 +22,8 @@ function Home() {
     <View className={styles.background}>
       <Header title='Minhas movimentações' />
       <CardsList homeStates={states} />
+      <ListReceives homeStates={states} />
     </View>
   )
 }
-
 export default Home;
-

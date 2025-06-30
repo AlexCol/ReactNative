@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import { Balance } from '../../../../types/Balance'
+import { Balance } from '../../../../../../types/Balance'
 import { View, Text } from 'react-native';
 import { cardsStyles } from './card.style';
 import { getLabelName } from './functions/getLabelName';
-import { formatToBrCurrency } from './functions/formatToBrCurrency';
+import { formatToBrCurrency } from '../../../../../../util/formatToBrCurrency';
 
 type CardProps = {
   balance: Balance
