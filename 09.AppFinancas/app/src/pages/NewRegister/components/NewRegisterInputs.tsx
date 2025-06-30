@@ -18,6 +18,7 @@ function NewRegisterInputs({ newRegisterStates }: NewRegisterInputsProps) {
         value={newRegisterStates.descricao}
         onChangeText={newRegisterStates.setDescricao}
         maxLength={50}
+        editable={!newRegisterStates.isLoading}
       />
 
       <TextInput
@@ -27,6 +28,7 @@ function NewRegisterInputs({ newRegisterStates }: NewRegisterInputsProps) {
         onChangeText={(valor) => newRegisterStates.setValor(newRegisterTrataValor(valor))}
         maxLength={10}
         keyboardType='numeric'
+        editable={!newRegisterStates.isLoading}
       />
     </>
   )

@@ -5,14 +5,19 @@ import { useNavigation } from "@react-navigation/native";
 
 type HeaderProps = {
   title: string;
+  isLoading?: boolean;
 }
 
-function Header({ title }: HeaderProps) {
+function Header({ title, isLoading = false }: HeaderProps) {
   const navigation = useNavigation<any>(); //como não vou acessar nenhuma tela especifica, não preciso tipar
 
   return (
     <View className={styles.container}>
-      <TouchableOpacity className={styles.button} onPress={() => navigation.openDrawer()}>
+      <TouchableOpacity
+        className={styles.button}
+        onPress={() => navigation.openDrawer()}
+        disabled={isLoading}
+      >
         <Feather name="menu" size={35} color="#121212" />
       </TouchableOpacity>
 

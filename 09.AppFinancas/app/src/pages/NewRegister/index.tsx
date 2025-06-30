@@ -14,7 +14,7 @@ function NewRegister() {
       <MyKeyboardAvoidingView className={newRegisterStyles.background} >
 
         {/*Cabeçalho*/}
-        <Header title='Registrando' />
+        <Header title='Registrando' isLoading={states.isLoading} />
 
         {/*Formulário*/}
         <MyKeyboardAvoidingView className={newRegisterStyles.form}>

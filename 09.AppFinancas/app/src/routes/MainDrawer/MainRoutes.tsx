@@ -55,6 +55,8 @@ function CustomDrawer(props: DrawerContentComponentProps) {
 
       <DrawerItemList {...props} />
 
+      <View className="mt-4 border-t border-gray-500"></View>
+
       <TouchableOpacity className={logOutButtonTailwindClass} onPress={signOut}>
         <Feather name="log-out" size={24} color="#000" />
         <Text style={{ fontSize: 16, color: '#000', marginLeft: 10 }}>Sair</Text>
@@ -67,7 +69,7 @@ function CustomDrawer(props: DrawerContentComponentProps) {
 const logOutButtonTailwindClass = `
   flex
   p-4
-  mt-6
+  mt-4
   flex-row
   w-1/3
 `;

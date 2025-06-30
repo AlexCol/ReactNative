@@ -2,6 +2,7 @@ import { ActivityIndicator, Text, TouchableOpacity } from "react-native"
 import { NewRegisterStates } from "../newRegister.states"
 import { newRegisterStyles } from "../newRegister.styles"
 import { newRegisterClearRefs } from "../functions/newRegisterClearRefs"
+import { addRegister } from "../functions/addRegister"
 
 type NewRegisterSubmintButtonProps = {
   newRegisterStates: NewRegisterStates
@@ -10,18 +11,14 @@ type NewRegisterSubmintButtonProps = {
 function NewRegisterSubmintButton({ newRegisterStates }: NewRegisterSubmintButtonProps) {
   const { isLoading } = newRegisterStates;
 
-  function registry() {
-    console.log('Registrando...');
-    console.log(newRegisterStates.descricao);
-    console.log(newRegisterStates.valor);
-    console.log(newRegisterStates.tipoLancamento);
-    newRegisterClearRefs(newRegisterStates);
+  async function registry() {
+    await addRegister(newRegisterStates);
   }
 
   return (
     <TouchableOpacity className={newRegisterStyles.submitButton} onPress={registry}>
       {isLoading
-        ? <ActivityIndicator color="rgb(0, 138, 23)" size="large" />
+        ? <ActivityIndicator color="rgb(255, 255, 255)" size="large" />
         : <Text className={newRegisterStyles.submitButtonText}>Registrar</Text>
       }
     </TouchableOpacity>

@@ -1,0 +1,2 @@
+
+export const BACKEND_DATE_FORMAT = 'DD/MM/YYYY';

@@ -15,12 +15,20 @@ function NewRegisterTipoLancamentoSwitch({ newRegisterStates }: NewRegisterTipoL
 
   return (
     <View className={newRegisterStyles.tpLancamentoContainer}>
-      <TouchableOpacity className={receitaClassSelected} onPress={() => setTipoLancamento('receita')}>
+      <TouchableOpacity
+        className={receitaClassSelected}
+        onPress={() => setTipoLancamento('receita')}
+        disabled={newRegisterStates.isLoading}
+      >
         <Feather name={'arrow-up'} size={25} color="black" />
         <Text className={newRegisterStyles.tpLancamentoLabel}>Receita</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity className={despesaClassSelected} onPress={() => setTipoLancamento('despesa')}>
+      <TouchableOpacity
+        className={despesaClassSelected}
+        onPress={() => setTipoLancamento('despesa')}
+        disabled={newRegisterStates.isLoading}
+      >
         <Feather name={'arrow-down'} size={25} color="black" />
         <Text className={newRegisterStyles.tpLancamentoLabel}>Despesa</Text>
       </TouchableOpacity>
