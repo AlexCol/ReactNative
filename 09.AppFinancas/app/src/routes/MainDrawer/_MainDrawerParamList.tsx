@@ -7,6 +7,7 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 export type MainDrawerParamList = {
   Home: undefined; // Rota para a tela inicial
   NewRegister: undefined; // Rota para a tela de novo registro
+  Profile: undefined; // Rota para a tela de perfil
 };
 
 export type MainNavigationProp = DrawerNavigationProp<MainDrawerParamList>;

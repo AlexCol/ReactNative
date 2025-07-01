@@ -7,11 +7,13 @@ import { useAuthValue } from '../../contexts/AuthContext';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { drawerOptions } from './util/mainDrawerOptions';
+import ProfileScreenConfig from '../../pages/Profile/profile.config.screen';
 
 function MainRoutes() {
   const mainPagesConfigList = [
     HomeScreenConfig,
-    NewRegisterScreenConfig
+    NewRegisterScreenConfig,
+    ProfileScreenConfig,
   ];
 
   const Drawer = createDrawerNavigator<MainDrawerParamList>();

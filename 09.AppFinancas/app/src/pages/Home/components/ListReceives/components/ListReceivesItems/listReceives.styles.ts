@@ -6,7 +6,7 @@ const listTailwindClass = `
 
 //View - ItemList
 const containerTailwindClass = `
-  bg-white
+  bg-background
   rounded
   mx-3
   mb-4
