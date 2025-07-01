@@ -28,7 +28,7 @@ function ItemList({ receive, states }: ItemListProps) {
           </View>
         </View>
 
-        <Text className={listReceivesStyles.valorText}>
+        <Text className={listReceivesStyles.valorText} numberOfLines={1}>
           {`${formatToBrCurrency(receive.value)} - ${receive.description}`}
         </Text>
       </View>

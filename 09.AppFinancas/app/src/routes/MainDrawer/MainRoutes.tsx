@@ -2,12 +2,10 @@ import React from 'react'
 import { MainDrawerParamList } from './_MainDrawerParamList';
 import HomeScreenConfig from '../../pages/Home/home.config.screen';
 import NewRegisterScreenConfig from '../../pages/NewRegister/newRegister.config.screen';
-import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { useAuthValue } from '../../contexts/AuthContext';
-import { Image, View, Text, TouchableOpacity } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { createDrawerNavigator, DrawerContentComponentProps } from '@react-navigation/drawer';
 import { drawerOptions } from './util/mainDrawerOptions';
 import ProfileScreenConfig from '../../pages/Profile/profile.config.screen';
+import CustomDrawer from './CustomDrawer';
 
 function MainRoutes() {
   const mainPagesConfigList = [
@@ -17,9 +15,10 @@ function MainRoutes() {
   ];
 
   const Drawer = createDrawerNavigator<MainDrawerParamList>();
+  const callCustomDrawer = (props: DrawerContentComponentProps) => <CustomDrawer {...props} />;
 
   return (// NavigationContainer está em APP, pois é o container principal da navegação e a Stack tbm pode o usar
-    <Drawer.Navigator screenOptions={drawerOptions} drawerContent={CustomDrawer}>
+    <Drawer.Navigator screenOptions={drawerOptions} drawerContent={callCustomDrawer}>
       {mainPagesConfigList.map((ScreenConfig) => (
         <Drawer.Screen
           key={ScreenConfig.name}
@@ -34,44 +33,18 @@ function MainRoutes() {
 
 export default MainRoutes;
 
-//********************************************************************
-// Custom Drawer Component - deixando aqui pois realizar alterações
-// com ela aqui, é refletida pelo hot reload. Em um arquivo separado
-// o hot reload não identifica que houve alteração.
-//********************************************************************
-function CustomDrawer(props: DrawerContentComponentProps) {
-  const { name, signOut } = useAuthValue();
+/*
+customDrawer: se chamar assim
+drawerContent={CustomDrawer}>
+alterações feitas em CustomDrawer.tsx não serão refletidas com Hot Reload
+então é necessário reiniciar o app para ver as alterações
 
-  return (
-    <DrawerContentScrollView>
-      <View className="flex items-center justify-center h-24 mt-5 mb-5">
-        <Image
-          source={require('../../../public/images/Logo.png')}
-          style={{ width: 65, height: 65 }}
-        />
+! para que o hot reload funcione
+para que funcione, realizar a chamada ou com um metodo auxiliar
+  const callCustomDrawer = (props: DrawerContentComponentProps) => <CustomDrawer {...props} />;
+e usado drawerContent={callCustomDrawer}>
 
-        <Text style={{ fontSize: 17, color: '#000', marginBottom: 35, }}>
-          Bem vindo {name}!
-        </Text>
-      </View>
+ou chamar
+  drawerContent={<CustomDrawer {...props} />}
 
-      <DrawerItemList {...props} />
-
-      <View className="mt-4 border-t border-gray-500"></View>
-
-      <TouchableOpacity className={logOutButtonTailwindClass} onPress={signOut}>
-        <Feather name="log-out" size={24} color="#000" />
-        <Text style={{ fontSize: 16, color: '#000', marginLeft: 10 }}>Sair</Text>
-      </TouchableOpacity>
-
-    </DrawerContentScrollView>
-  )
-}
-
-const logOutButtonTailwindClass = `
-  flex
-  p-4
-  mt-4
-  flex-row
-  w-1/3
-`;
+*/
