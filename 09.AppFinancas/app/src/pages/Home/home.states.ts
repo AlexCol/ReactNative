@@ -8,6 +8,7 @@ export default function useHomeStates() {
   const [listReceives, setListReceives] = useState<Receives[]>([]);
   const [dateMoviments, setDateMoviments] = useState<Date>(new Date()); // Default to today's date in YYYY-MM-DD format
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isCalendarioModalVisible, setIsCalendarioModalVisible] = useState<boolean>(false);
   const isFocused = useIsFocused();
 
   return {
@@ -15,6 +16,7 @@ export default function useHomeStates() {
     isLoading, setIsLoading,
     dateMoviments, setDateMoviments,
     listReceives, setListReceives,
+    isCalendarioModalVisible, setIsCalendarioModalVisible,
     isFocused,
   }
 

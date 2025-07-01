@@ -19,7 +19,7 @@ const titleTailwindClass = `
   mt-1
 `;
 
-export const calendarioStyles = {
+export const calendarioButtonStyles = {
   area: areaTailwindClass,
   title: titleTailwindClass,
 };

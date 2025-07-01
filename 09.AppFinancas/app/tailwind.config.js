@@ -24,7 +24,10 @@ module.exports = {
       fontSize: {
         "17px": "17px",
         "22px": "22px",
-      }
+      },
+      flex: {
+        2: "2 2 0%",
+      },
     },
   },
   plugins: [],

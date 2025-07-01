@@ -1,5 +1,6 @@
 import { HomeStates } from "../../home.states"
-import Calendario from "./components/Calendario";
+import CalendarioButton from "./components/CalendarioButton";
+import CalendarioModal from "./components/CalendarioModal";
 import ListReceivesItems from "./components/ListReceivesItems";
 
 type ListReceivesProps = {
@@ -9,8 +10,9 @@ type ListReceivesProps = {
 function ListReceives({ homeStates }: ListReceivesProps) {
   return (
     <>
-      <Calendario homeStates={homeStates} />
+      <CalendarioButton homeStates={homeStates} />
       <ListReceivesItems homeStates={homeStates} />
+      <CalendarioModal homeStates={homeStates} />
     </>
   )
 }
