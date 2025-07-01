@@ -13,7 +13,7 @@ function ListReceivesItems({ homeStates }: ListReceivesItemsProps) {
       className={listReceivesStyles.list}
       data={homeStates.listReceives}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <ItemList receive={item} />}
+      renderItem={({ item }) => <ItemList receive={item} states={homeStates} />}
       showsVerticalScrollIndicator={false}
       ListEmptyComponent={() => (
         <Text className={listReceivesStyles.emptyText}>Nenhum registro encontrado</Text>

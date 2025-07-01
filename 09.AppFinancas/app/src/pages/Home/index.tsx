@@ -16,7 +16,7 @@ function Home() {
     return () => {
       isActiveRef.current = false;
     }
-  }, [states.isFocused]);
+  }, [states.isFocused, states.dateMoviments]);
 
   return (
     <View className={styles.background}>
