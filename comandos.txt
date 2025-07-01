@@ -68,3 +68,7 @@ npm install styled-components --legacy-peer-deps
 
 --pacote dayjs (para tratar com datas)
 npm install dayjs
+
+--calendars (https://github.com/wix/react-native-calendars) e https://wix.github.io/react-native-calendars/docs/Components/Calendar
+npm install react-native-calendars
+npm install --save-dev @types/react-native-calendars

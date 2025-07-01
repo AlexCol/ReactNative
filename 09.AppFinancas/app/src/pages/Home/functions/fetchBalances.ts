@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
 import api from "../../../services/api";
 import { HomeStates } from "../home.states";
-import { BACKEND_DATE_FORMAT } from "../../../util/constantes";
+import { formatDate } from "./formataData";
 
 export default async function fetchBalances(states: HomeStates, isActiveRef: { current: boolean }) {
   //states.setIsLoading(true);
@@ -10,7 +9,7 @@ export default async function fetchBalances(states: HomeStates, isActiveRef: { c
     method: 'get',
     url: '/balance',
     params: {
-      date: dayjs(states.dateMoviments).format(BACKEND_DATE_FORMAT), // Formata a data para o formato DD/MM/YYYY
+      date: formatDate(states.dateMoviments),
     }
   });
 
