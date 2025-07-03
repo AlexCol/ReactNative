@@ -1,3 +1,4 @@
+npm install -g expo-cli
 
 https://reactnative.dev/docs/fabric-native-components-introduction
 https://reactnative.dev/docs/components-and-apis
@@ -72,3 +73,24 @@ npm install dayjs
 --calendars (https://github.com/wix/react-native-calendars) e https://wix.github.io/react-native-calendars/docs/Components/Calendar
 npm install react-native-calendars
 npm install --save-dev @types/react-native-calendars
+
+--notifiee (para notificações) -- https://notifee.app/react-native/docs/installation
+npm install --save @notifee/react-native
+npm install expo-build-properties
+
+adicionar plugin a app.json
+"plugins": [
+  [
+    "expo-build-properties", 
+    {
+      "android": {
+        "extraMavenRepos": [
+			    "../../node_modules/@notifee/react-native/android/libs"
+				]
+	    }
+	  }
+  ]
+]    
+
+npx expo prebuild
+adicionar um script para executar o app (não pode mais ser via expo start) -> npx expo run:android
