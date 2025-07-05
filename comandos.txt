@@ -117,3 +117,8 @@ No Info.plist, adicione:
 
 //gerenciar Permissões ----- somente se usar com Prebuild e npx expo run:android
 npm install react-native-permissions
+
+//usar redux
+npm install react-redux
+npm install --save-dev @types/react-redux
+npm install @reduxjs/toolkit

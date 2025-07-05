@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { NavigationProp } from '../App';
+import { NavigationProp } from '../../App';
 
 export default function Home() {
   const navigation = useNavigation<NavigationProp>();
