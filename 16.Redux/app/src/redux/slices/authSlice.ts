@@ -9,17 +9,21 @@ type UserData = {
   jwt: string;
 }
 
-type UserLogin = {
-  email: string;
-  senha: string;
-}
-
 type AuthState = {
   user: UserData | null;
   error: boolean;
   success: boolean;
   loading: boolean;
   message: string;
+}
+
+//************************************************************************
+//* Criando os tipos usados nos Thunks
+//* UserLogin é o tipo do objeto que será passado como parâmetro para a ação de login
+//************************************************************************
+type UserLogin = {
+  email: string;
+  senha: string;
 }
 
 //************************************************************************
@@ -40,16 +44,16 @@ const initialState: AuthState = {
 // estados de carregamento, sucesso e erro nos extraReducers abaixo.
 //************************************************************************
 
-export const loginUser = createAsyncThunk<
-  UserData,                         // retorno se sucesso
-  UserLogin, // parâmetro da função
-  { rejectValue: string }           // tipo do valor passado para rejectWithValue
->(
+//tipagens dentro de <>: 
+// UserData: dados que serão retornados se a ação for bem-sucedida;
+// UserLogin: tipo do parâmetro que a função recebe;
+// { rejectValue: string }: tipo do valor que será passado para rejectWithValue em caso de erro.
+export const loginUser = createAsyncThunk<UserData, UserLogin, { rejectValue: string }>(
   'auth/loginUser', // nome da ação, pode ser qualquer string, só não pode ser repetida entre Thunks
   async (params, { rejectWithValue }) => { //não precisa tipar params, pois foi tipado na definição do thunk
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    const { email, senha } = params
+    const { email, senha } = params;
 
     if (email === 'admin@admin.com' && senha === '123123') {
       return { name: 'Admin', jwt: 'token123' }
