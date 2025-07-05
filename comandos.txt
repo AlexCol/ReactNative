@@ -94,3 +94,26 @@ adicionar plugin a app.json
 
 npx expo prebuild
 adicionar um script para executar o app (não pode mais ser via expo start) -> npx expo run:android
+
+--camera1 (https://github.com/react-native-image-picker/react-native-image-picker#readme)
+npm install react-native-image-picker
+// não dá pra usar com Expo, mesma coisa do notifiee
+--npx expo prebuild
+--script: npx expo run:android
+2. Permissões Android
+No AndroidManifest.xml, garanta que tem:
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+3. Permissões iOS
+No Info.plist, adicione:
+<key>NSCameraUsageDescription</key>
+<string>Precisamos acessar sua câmera</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Precisamos acessar suas fotos</string>
+
+--camera2 (para uso com expo) https://docs.expo.dev/versions/latest/sdk/imagepicker/
+--npx expo install expo-image-picker
+
+//gerenciar Permissões ----- somente se usar com Prebuild e npx expo run:android
+npm install react-native-permissions
