@@ -15,12 +15,12 @@ async function pedePermissao(setPermitido: Dispatch<SetStateAction<boolean>>) {
       : PERMISSIONS.IOS.LOCATION_WHEN_IN_USE;
 
   let result = await check(permission);
-  console.log('Resultado inicial:', result);
+  console.log('Permissao: resultado inicial =>', result);
 
   if (result !== RESULTS.GRANTED) {
     console.log('Solicitando permissão...');
     result = await request(permission);
-    console.log('Resultado após solicitar:', result);
+    console.log('Permissao: resultado após solicitar =>', result);
   }
 
   setPermitido(result === RESULTS.GRANTED);
