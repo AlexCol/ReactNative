@@ -1,7 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native';
 import SimpleMap from './src/SimpleMap';
+import { useEffect, useState } from 'react';
+import pedePermissao from './src/functions/pedePermissao';
 
 export default function App() {
+  const [permitido, setPermitido] = useState(false);
+  useEffect(() => {
+    pedePermissao(setPermitido)
+  }, []);
+
+  if (!permitido) {
+    return (
+      <View style={styles.container}>
+        <Text>Permissão de localização não concedida.</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
