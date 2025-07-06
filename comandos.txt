@@ -122,3 +122,13 @@ npm install react-native-permissions
 npm install react-redux
 npm install --save-dev @types/react-redux
 npm install @reduxjs/toolkit
+
+//para mapas (https://github.com/react-native-maps/react-native-maps?tab=readme-ov-file)
+npm install react-native-maps
+npm install --save-dev @types/react-native-maps
+adicionar ao AndroidManifest
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+-->precisa obter uma key de uso em google cloud plataform
+// não dá pra usar com Expo, mesma coisa do notifiee
