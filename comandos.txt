@@ -131,3 +131,6 @@ adicionar ao AndroidManifest
 
 -->precisa obter uma key de uso em google cloud plataform
 // não dá pra usar com Expo, mesma coisa do notifiee
+
+-->geolocalização
+npm install @react-native-community/geolocation;

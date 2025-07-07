@@ -9,6 +9,7 @@ import SimpleMap5 from './src/SimpleMap5';
 import SimpleMap6 from './src/SimpleMap6';
 import SimpleMap7 from './src/SimpleMap7';
 import SimpleMap8 from './src/SimpleMap8';
+import SimpleMap9 from './src/SimpleMap9';
 
 export default function App() {
   const [permitido, setPermitido] = useState(false);
@@ -51,7 +52,10 @@ export default function App() {
       {/* <SimpleMap7 /> */}
 
       {/* Custom Markers - adicionando imagens */}
-      <SimpleMap8 />
+      {/* <SimpleMap8 /> */}
+
+      {/* Obter localização */}
+      <SimpleMap9 />
 
     </View>
   );
