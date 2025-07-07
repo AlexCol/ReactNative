@@ -5,6 +5,7 @@ import SimpleMap from './src/SimpleMap';
 import SimpleMap2 from './src/SimpleMap2';
 import SimpleMap3 from './src/SimpleMap3';
 import SimpleMap4 from './src/SimpleMap4';
+import SimpleMap5 from './src/SimpleMap5';
 
 export default function App() {
   const [permitido, setPermitido] = useState(false);
@@ -35,7 +36,11 @@ export default function App() {
       {/* <SimpleMap3 /> */}
 
       {/*Propriedades*/}
-      <SimpleMap4 />
+      {/* <SimpleMap4 /> */}
+
+      {/* Markers */}
+      <SimpleMap5 />
+
     </View>
   );
 }
